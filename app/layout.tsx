@@ -136,16 +136,9 @@
 
 
 
-
-
-"use client"
-
-import React from "react"
 import type { Metadata, Viewport } from "next"
 import { Space_Grotesk, Inter, DM_Sans } from "next/font/google"
-import { Analytics } from "@vercel/analytics/next"
-import { GoogleOAuthProvider } from "@react-oauth/google"
-import { IdProvider } from "@radix-ui/react-id"
+import { Providers } from "./providers"
 import "./globals.css"
 
 const spaceGrotesk = Space_Grotesk({
@@ -201,15 +194,7 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${dmSans.variable} font-sans antialiased`}
       >
-        <GoogleOAuthProvider
-          clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!}
-        >
-          <IdProvider>
-            {children}
-          </IdProvider>
-        </GoogleOAuthProvider>
-
-        <Analytics />
+        <Providers>{children}</Providers>
       </body>
     </html>
   )
