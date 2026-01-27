@@ -1,6 +1,7 @@
 
 
 "use client"
+import { useEffect } from "react"
 
 import { useState } from "react"
 import Image from "next/image"
@@ -17,6 +18,11 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
   const [success, setSuccess] = useState(false)
+
+  useEffect(() => {
+  supabaseBrowser.auth.getSession()
+}, [])
+
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault()
