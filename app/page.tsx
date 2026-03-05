@@ -12,9 +12,10 @@ export default function HomePage() {
   return (
     <main className="min-h-screen">
       <Header />
+      <AboutSection />
       <Hero />
       <Features />
-      <AboutSection />   {/* ← Visible "What is Tecsaro AI" — required for Google OAuth verification */}
+      {/* <AboutSection />   ← Visible "What is Tecsaro AI" — required for Google OAuth verification */}
       <Stats />
       <CTA />
       <Footer />
