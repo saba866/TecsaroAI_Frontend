@@ -229,11 +229,11 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 const pageMap: Record<string, { title: string; description?: string }> = {
   "/dashboard":                    { title: "Dashboard",        description: "Overview of your workspace"         },
   "/dashboard/projects":           { title: "Projects",         description: "Manage your projects"               },
-  "/dashboard/overview":           { title: "Overview",         description: "High-level performance insights"    },
+ 
   "/dashboard/visibility":         { title: "Visibility",       description: "Track brand mentions in AI answers" },
   "/dashboard/competitors":        { title: "Competitors",      description: "Monitor competing brands in AI"     },
   "/dashboard/recommendations":    { title: "Recommendations",  description: "Actionable steps to improve AEO"   },
-  "/dashboard/optimization-hub":   { title: "Optimization Hub", description: "Improve and optimize your AEO"     },
+ 
   "/dashboard/reports":            { title: "Reports",          description: "Analyse and download reports"       },
   "/dashboard/app-integration":    { title: "Integrations",     description: "Connect your platforms"            },
   "/billing":                      { title: "Billing",          description: "Plans, invoices & payments"         },
