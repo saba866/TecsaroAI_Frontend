@@ -1,3 +1,6 @@
+
+
+
 "use client"
 
 import { motion } from "framer-motion"
@@ -13,13 +16,17 @@ const sections = [
 Personal Information
 • Name, email address, company name
 • Account login details
-• Support communication
+• Support communications
 
 Website & Usage Data
 • Website URLs connected to our platform
-• Website structure and metadata
-• Pages, content, and technical SEO data
-• Usage logs, feature usage, and activity
+• Publicly accessible website content, headings, FAQs, and structured data (crawled for analysis)
+• Usage logs, feature usage, and activity within the platform
+
+AI Tracking Data
+• Prompts generated and tracked on your behalf
+• AI engine responses containing brand mentions
+• Competitor brands detected in AI answers
 
 Payment Information
 • Payment details are processed securely by third-party providers (Razorpay)
@@ -35,10 +42,13 @@ Technical Information
     title: "2. How We Use Your Information",
     content: `We use your information to:
 
-• Provide and operate our services
-• Analyze and optimize your website
-• Run AI and SEO processes
-• Publish content when approved by you
+• Provide and operate our AEO tracking and analysis services
+• Crawl and analyze your website content
+• Generate and run prompts across AI engines
+• Calculate your AEO Visibility Score
+• Detect competitor mentions in AI answers
+• Provide recommendations to improve AI visibility
+• Generate schema markup for your pages
 • Process payments and subscriptions
 • Improve product performance
 • Communicate updates and support
@@ -46,11 +56,12 @@ Technical Information
   },
   {
     title: "3. AI & Data Processing",
-    content: `Tecsaro AI uses AI models and external APIs to process your data for analysis and optimization.
+    content: `Tecsaro AI uses AI models and external APIs to process your data for analysis and visibility tracking.
 
-• Only required data is shared with AI providers
-• We do not train public models using your private data
-• Data is processed securely and temporarily where possible`
+• Only required data is shared with AI providers (e.g. prompts and website content needed for tracking)
+• We do not train public AI models using your private data
+• Data shared with AI engines is used solely to check for brand mentions and generate visibility results
+• Processing is temporary and purpose-limited`
   },
   {
     title: "4. Cookies & Tracking",
@@ -68,10 +79,10 @@ You can disable cookies in your browser, but some features may not work correctl
     content: `We do not sell your data.
 
 We may share limited data with:
-• Payment processors (Razorpay, Stripe)
+• Payment processors (Razorpay)
 • Cloud hosting providers
 • Analytics services
-• AI service providers (only for processing requests)
+• AI service providers (only to run visibility tracking requests on your behalf)
 • Email and support tools
 
 All third parties are required to keep your data secure.`
@@ -107,18 +118,14 @@ Email: support@tecsaro.com`
     title: "9. International Users",
     content: `If you access our services from outside India, your data may be processed in India or other regions where our infrastructure providers operate.`
   },
+ 
   {
-    title: "10. Children's Privacy",
-    content: `Tecsaro AI is not intended for users under 18 years of age.
-We do not knowingly collect data from children.`
-  },
-  {
-    title: "11. Policy Updates",
+    title: "10. Policy Updates",
     content: `We may update this Privacy Policy from time to time.
 Changes will be posted on this page with the updated date.`
   },
   {
-    title: "12. Contact Us",
+    title: "11. Contact Us",
     content: `If you have questions about this Privacy Policy or your data, contact:
 support@tecsaro.com`
   }
@@ -128,14 +135,14 @@ export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-muted/50 to-transparent" />
-          
+
           <div className="container mx-auto px-4 relative z-10">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -159,9 +166,9 @@ export default function PrivacyPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <p className="text-muted-foreground">
-                At Tecsaro AI ("we", "our", "us"), your privacy is important to us. 
-                This Privacy Policy explains how we collect, use, store, and protect your 
-                information when you use our website and services. By accessing or using 
+                At Tecsaro AI ("we", "our", "us"), your privacy is important to us.
+                This Privacy Policy explains how we collect, use, store, and protect your
+                information when you use our website and services. By accessing or using
                 Tecsaro AI, you agree to the practices described in this policy.
               </p>
             </div>

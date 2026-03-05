@@ -1,16 +1,21 @@
+
+
+
+
 "use client"
 
 import { motion } from "framer-motion"
+import { useRef } from "react"
 import { Header } from "@/components/marketing/header"
 import { Footer } from "@/components/marketing/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { 
-  Target, 
-  Eye, 
-  Lightbulb, 
-  Zap, 
-  Globe, 
+import {
+  Target,
+  Eye,
+  Lightbulb,
+  Zap,
+  Activity,
   Rocket,
   Users,
   ShoppingBag,
@@ -38,27 +43,27 @@ const values = [
   {
     icon: Lightbulb,
     title: "Clarity over complexity",
-    description: "SEO should be understandable, not confusing."
+    description: "AI visibility should be measurable, not mysterious."
   },
   {
     icon: Zap,
     title: "Action over reports",
-    description: "Insights matter only when they lead to action."
+    description: "Insights matter only when they lead to something you can act on."
   },
   {
     icon: Target,
     title: "Automation with control",
-    description: "AI should help you — not replace your decisions."
+    description: "AI should run the tracking — you stay in control of the decisions."
   },
   {
-    icon: Globe,
-    title: "Website-first thinking",
-    description: "Your website is your digital foundation. We build everything around it."
+    icon: Activity,
+    title: "Daily visibility, not snapshots",
+    description: "AI answers change constantly. We track them every day."
   },
   {
     icon: Rocket,
-    title: "Build for the future",
-    description: "We don't chase trends. We build for where search is going."
+    title: "Build for where search is going",
+    description: "Traditional search is evolving into AI-powered answers. We're built for that future."
   }
 ]
 
@@ -74,16 +79,16 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-emerald/5 to-transparent" />
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-emerald/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet/10 rounded-full blur-3xl" />
-          
+
           <div className="container mx-auto px-4 relative z-10">
-            <motion.div 
+            <motion.div
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -93,12 +98,12 @@ export default function AboutPage() {
                 About Tecsaro AI
               </span>
               <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Making every website discoverable in the{" "}
-                <span className="text-gradient">age of AI search</span>
+                Helping brands get found in{" "}
+                <span className="text-gradient">AI-generated answers</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Search is no longer just about rankings. It's about being the answer — 
-                in Google, ChatGPT, Gemini, Perplexity, and beyond.
+                Millions of people ask ChatGPT, Gemini, and Perplexity questions every day.
+                Tecsaro AI tells you if your brand is in those answers — and what to do to improve your visibility.
               </p>
             </motion.div>
           </div>
@@ -116,15 +121,16 @@ export default function AboutPage() {
               >
                 <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Our Mission</h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  To make every website discoverable in the age of AI search.
+                  To give every business clear visibility into how they appear in AI-generated answers — and the tools to improve it.
                 </p>
                 <p className="text-muted-foreground">
-                  Our mission is to help businesses technically optimize, publish, and grow 
-                  their websites so they are visible everywhere people search — not just Google, 
-                  but ChatGPT, Gemini, Perplexity, and the next generation of AI-powered discovery.
+                  AI engines like ChatGPT, Gemini, and Perplexity are becoming the first place people go for
+                  recommendations, comparisons, and decisions. Most businesses have no idea if they appear
+                  in those answers. We built Tecsaro AI to change that — with daily tracking, clear scores,
+                  and actionable recommendations focused entirely on AEO (Answer Engine Optimization).
                 </p>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -142,20 +148,20 @@ export default function AboutPage() {
                     </div>
                     <ul className="space-y-3 text-muted-foreground">
                       <li className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 bg-emerald rounded-full mt-2" />
-                        <span>Websites optimize themselves</span>
+                        <span className="w-1.5 h-1.5 bg-emerald rounded-full mt-2 flex-shrink-0" />
+                        <span>Every business knows their AI answer visibility in real time</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 bg-emerald rounded-full mt-2" />
-                        <span>AI search works for businesses, not against them</span>
+                        <span className="w-1.5 h-1.5 bg-emerald rounded-full mt-2 flex-shrink-0" />
+                        <span>AI search works for brands, not against them</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 bg-emerald rounded-full mt-2" />
-                        <span>SEO is simple, transparent, and actionable</span>
+                        <span className="w-1.5 h-1.5 bg-emerald rounded-full mt-2 flex-shrink-0" />
+                        <span>AEO is simple, trackable, and actionable for any business</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="w-1.5 h-1.5 bg-emerald rounded-full mt-2" />
-                        <span>Every business can compete globally, regardless of size</span>
+                        <span className="w-1.5 h-1.5 bg-emerald rounded-full mt-2 flex-shrink-0" />
+                        <span>Any brand — regardless of size — can compete in AI-powered discovery</span>
                       </li>
                     </ul>
                   </div>
@@ -168,7 +174,7 @@ export default function AboutPage() {
         {/* Values Section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -179,8 +185,8 @@ export default function AboutPage() {
                 The principles that guide everything we build at Tecsaro AI
               </p>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
               variants={staggerContainer}
               initial="initial"
@@ -207,7 +213,7 @@ export default function AboutPage() {
         {/* Founder Story Section */}
         <section className="py-20 bg-charcoal text-white">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -216,19 +222,22 @@ export default function AboutPage() {
               <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">The Tecsaro Story</h2>
               <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 md:p-12 border border-white/10">
                 <p className="text-lg text-white/80 mb-6">
-                  Tecsaro AI was born from a simple problem: Too many tools showed data, 
-                  but none helped businesses actually fix and publish what was needed.
+                  Tecsaro AI was built around a simple observation: AI engines are now answering
+                  questions that people used to type into Google — and most businesses have
+                  absolutely no idea whether they appear in those answers.
                 </p>
                 <p className="text-white/80 mb-6">
-                  With AI changing how people search, we saw a bigger gap — websites were 
-                  becoming invisible, not because they were bad, but because tools hadn't evolved.
+                  Existing tools were built for traditional search. They track rankings, backlinks,
+                  and keywords. None of them tell you whether ChatGPT recommends your brand when
+                  someone asks for a solution you provide.
                 </p>
                 <p className="text-white/80 mb-8">
-                  So we built Tecsaro AI to fix technical SEO automatically, optimize for AI search, 
-                  publish content and products directly, and track progress with clear scores.
+                  So we built Tecsaro AI to focus entirely on AEO — tracking brand visibility
+                  in AI-generated answers, detecting competitors in those answers, and giving
+                  businesses clear, actionable steps to improve their presence.
                 </p>
                 <p className="text-emerald-light font-semibold text-lg">
-                  Not just another SEO tool — but a website optimization engine for the AI era.
+                  Not another SEO tool. The first AEO platform built for the AI search era.
                 </p>
               </div>
             </motion.div>
@@ -238,7 +247,7 @@ export default function AboutPage() {
         {/* Who We Serve Section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="text-center mb-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -246,12 +255,12 @@ export default function AboutPage() {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Who We Serve</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                Tecsaro AI is built for businesses that depend on website visibility to grow
+                Tecsaro AI is built for businesses that depend on being discovered online — and need to know how visible they are in AI-generated answers.
               </p>
             </motion.div>
-            
-            <motion.div 
-              className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto"
+
+            <motion.div
+              className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto mb-8"
               variants={staggerContainer}
               initial="initial"
               whileInView="animate"
@@ -268,15 +277,15 @@ export default function AboutPage() {
                 </motion.div>
               ))}
             </motion.div>
-              <motion.div 
-              className="text-center mb-12"
+
+            <motion.div
+              className="text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground"></h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                MVP Focus: Tecsaro AI currently supports founders, early stage satrtups, e-commerce brands, and SaaS companies. Agency & enterprise features are under development and will be released in phase 2.
+              <p className="text-sm text-muted-foreground max-w-xl mx-auto bg-card border border-border rounded-xl px-6 py-4">
+                <strong className="text-foreground">MVP focus:</strong> Tecsaro AI currently supports founders, early-stage startups, e-commerce brands, and SaaS companies. Agency and enterprise features are under development and will be available in a future release.
               </p>
             </motion.div>
           </div>
@@ -285,7 +294,7 @@ export default function AboutPage() {
         {/* Belief & CTA Section */}
         <section className="py-20 bg-gradient-to-b from-emerald/5 to-background">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -293,15 +302,15 @@ export default function AboutPage() {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">What We Believe</h2>
               <blockquote className="text-xl md:text-2xl text-muted-foreground mb-8 italic">
-                "The future of search belongs to websites that are technically strong, 
-                AI-ready, and action-driven."
+                "The brands that win in the AI era will be the ones that know where they stand
+                — and take action before their competitors do."
               </blockquote>
               <p className="text-muted-foreground mb-8">
-                And we're here to help you build exactly that.
+                Tecsaro AI gives you both the visibility and the roadmap.
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">
-                  Start your test drive today
+                  Start your free trial today
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>

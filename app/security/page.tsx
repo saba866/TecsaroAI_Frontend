@@ -1,16 +1,20 @@
+
+
+
+
 "use client"
 
 import { motion } from "framer-motion"
 import { Header } from "@/components/marketing/header"
 import { Footer } from "@/components/marketing/footer"
-import { 
-  Shield, 
-  Server, 
-  Database, 
-  User, 
-  CreditCard, 
-  Globe, 
-  Bot, 
+import {
+  Shield,
+  Server,
+  Database,
+  User,
+  CreditCard,
+  Globe,
+  Bot,
   HardDrive,
   Mail,
   RefreshCw,
@@ -58,7 +62,7 @@ const securitySections = [
   {
     icon: CreditCard,
     title: "4. Payment Security",
-    description: "All payments are processed securely by trusted providers such as Razorpay (and Stripe for international customers in future).",
+    description: "All payments are processed securely by Razorpay.",
     points: [
       "We never store card or bank details",
       "Payment processing is PCI-DSS compliant",
@@ -67,22 +71,22 @@ const securitySections = [
   },
   {
     icon: Globe,
-    title: "5. Website Access & Publishing Safety",
-    description: "When you connect a website:",
+    title: "5. Website Crawling Safety",
+    description: "When you connect a website for crawling:",
     points: [
-      "Access is limited to required permissions only",
-      "Publishing actions require user approval (based on plan)",
-      "Changes are logged and traceable",
-      "Rollback options are available for safety"
+      "We only access publicly available content",
+      "No login credentials are stored for your website",
+      "Crawl data is stored securely and used only for analysis",
+      "You can disconnect your website and request data deletion at any time"
     ]
   },
   {
     icon: Bot,
-    title: "6. AI & Data Processing Security",
-    description: "For AI-powered features:",
+    title: "6. AI Tracking & Data Processing Security",
+    description: "For AI visibility tracking features:",
     points: [
-      "Only required data is sent to AI providers for processing",
-      "Data is not used to train public models",
+      "Only required prompt and content data is sent to AI providers",
+      "Your data is not used to train public AI models",
       "Processing is temporary and purpose-limited",
       "We follow strict access controls for AI operations"
     ]
@@ -104,14 +108,14 @@ export default function SecurityPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-emerald/5 to-transparent" />
-          
+
           <div className="container mx-auto px-4 relative z-10">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -135,8 +139,8 @@ export default function SecurityPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <p className="text-muted-foreground text-lg">
-                At Tecsaro AI, protecting your data, websites, and accounts is a top priority. 
-                We have built our platform with security in mind from day one and follow 
+                At Tecsaro AI, protecting your data, website connections, and account is a top priority.
+                We have built our platform with security in mind from day one and follow
                 industry-standard best practices to keep your information safe.
               </p>
             </div>
@@ -185,7 +189,7 @@ export default function SecurityPage() {
         {/* Responsible Disclosure */}
         <section className="py-12 bg-card">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -213,7 +217,7 @@ export default function SecurityPage() {
         {/* Updates */}
         <section className="py-12">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -226,7 +230,7 @@ export default function SecurityPage() {
                 <div>
                   <h2 className="text-xl font-bold mb-2 text-foreground">9. Security Updates</h2>
                   <p className="text-muted-foreground">
-                    We continuously improve our security practices. 
+                    We continuously improve our security practices.
                     This page may be updated as our platform evolves.
                   </p>
                 </div>
@@ -238,7 +242,7 @@ export default function SecurityPage() {
         {/* Contact */}
         <section className="py-12 bg-charcoal text-white">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

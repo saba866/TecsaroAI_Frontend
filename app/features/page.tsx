@@ -1,3 +1,5 @@
+
+
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -6,19 +8,16 @@ import { Header } from "@/components/marketing/header"
 import { Footer } from "@/components/marketing/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { 
-  Search, 
-  Bot, 
-  FileText, 
-  ShoppingCart,
-  Rocket,
-  Link2,
+import {
+  Globe,
+  MessageSquare,
+  Activity,
   BarChart3,
-  LineChart,
+  Users,
+  Lightbulb,
+  Code2,
   Shield,
   Settings,
-  Puzzle,
-  Users,
   ArrowRight,
   Check,
   Zap
@@ -40,113 +39,101 @@ const staggerContainer = {
 
 const featureCategories = [
   {
-    id: "technical-seo",
-    icon: Search,
-    title: "Website Analysis & Technical SEO",
+    id: "crawling",
+    icon: Globe,
+    title: "Website Crawling",
     color: "emerald",
     features: [
-      "Full technical SEO audit",
-      "Website health score",
-      "Crawlability & indexability checks",
-      "Broken links & redirect detection",
-      "Core Web Vitals & performance checks",
-      "Metadata issues detection",
-      "Internal linking analysis",
-      "Mobile & UX readiness checks"
+      "Full website content extraction",
+      "Page headings and structure analysis",
+      "FAQ detection and extraction",
+      "Existing structured data detection",
+      "Crawl data stored for ongoing analysis",
+      "Works with any website"
     ]
   },
   {
-    id: "ai-search",
-    icon: Bot,
-    title: "AI Search Optimization (GEO & AEO)",
+    id: "prompts",
+    icon: MessageSquare,
+    title: "Prompt Generation & Management",
     color: "violet",
     features: [
-      "AI visibility scoring",
-      "Optimization for ChatGPT, Gemini, Perplexity",
-      "Answer readiness checks",
+      "Auto-generated industry and business prompts",
+      "Custom prompt creation",
+      "Prompt library management",
+      "Select prompts to track (min / max per plan)",
+      "Brand-focused and competitor-focused queries",
+      "Prompt performance history"
+    ]
+  },
+  {
+    id: "tracking",
+    icon: Activity,
+    title: "Daily AI Visibility Tracking",
+    color: "emerald",
+    features: [
+      "Daily automated prompt runs",
+      "ChatGPT answer monitoring",
+      "Gemini answer monitoring",
+      "Perplexity answer monitoring",
       "Brand mention detection",
-      "AI citation opportunity analysis",
-      "Content structure optimization for AI answers"
+      "Manual run option (plan-dependent)"
     ]
   },
   {
-    id: "content",
-    icon: FileText,
-    title: "Content Optimization",
-    color: "emerald",
-    features: [
-      "AI-powered content suggestions",
-      "SEO, GEO & AEO content improvements",
-      "Keyword and intent alignment",
-      "Content scoring system",
-      "Preview before publishing",
-      "Bulk optimization (higher plans)"
-    ]
-  },
-  {
-    id: "ecommerce",
-    icon: ShoppingCart,
-    title: "Product Optimization (E-commerce)",
-    color: "violet",
-    features: [
-      "Product title & description optimization",
-      "Structured product content",
-      "AI-ready product pages",
-      "Shopify & WooCommerce support",
-      "Bulk product optimization"
-    ]
-  },
-  {
-    id: "publishing",
-    icon: Rocket,
-    title: "Publishing & Website Updates",
-    color: "emerald",
-    features: [
-      "One-click publishing",
-      "WordPress, Shopify, Custom site support",
-      "Manual approval & rollback",
-      "Change tracking & logs",
-      "Safe publishing workflow"
-    ]
-  },
-  {
-    id: "backlinks",
-    icon: Link2,
-    title: "Backlink Analysis",
-    color: "violet",
-    features: [
-      "Backlink health check",
-      "Referring domains analysis",
-      "New & lost link detection",
-      "Toxic link signals",
-      "Competitor backlink comparison (Pro+)"
-    ]
-  },
-  {
-    id: "keywords",
+    id: "scoring",
     icon: BarChart3,
-    title: "Keyword & Traditional SEO Tracking",
-    color: "emerald",
+    title: "AEO Visibility Score",
+    color: "violet",
     features: [
-      "Keyword ranking tracking",
-      "SERP feature tracking",
-      "Local SEO tracking",
-      "Competitor tracking",
-      "Weekly / daily updates based on plan"
+      "Overall AEO Visibility Score",
+      "Per-engine visibility breakdown",
+      "Brand mention frequency tracking",
+      "Position-in-answer scoring",
+      "Score trend over time",
+      "Per-prompt performance data"
     ]
   },
   {
-    id: "reporting",
-    icon: LineChart,
-    title: "Reporting & Scores",
+    id: "competitors",
+    icon: Users,
+    title: "Competitor Detection",
+    color: "emerald",
+    features: [
+      "Automatic competitor detection in AI answers",
+      "Competitor mention frequency tracking",
+      "Side-by-side visibility comparison",
+      "Competitor suggestion engine",
+      "Manual competitor tracking",
+      "Competitor limit per plan"
+    ]
+  },
+  {
+    id: "recommendations",
+    icon: Lightbulb,
+    title: "Recommendations",
     color: "violet",
     features: [
-      "Website health score",
-      "Content quality score",
-      "AI visibility score",
-      "Keyword performance insights",
-      "Progress tracking over time",
-      "Exportable reports (Pro+)"
+      "Prioritized AEO improvement suggestions",
+      "FAQ content recommendations",
+      "Topical authority guidance",
+      "Content structure improvements",
+      "Schema implementation guidance",
+      "Based on your actual visibility data"
+    ]
+  },
+  {
+    id: "schema",
+    icon: Code2,
+    title: "Schema Generation",
+    color: "emerald",
+    features: [
+      "FAQ schema generation",
+      "Organization schema generation",
+      "Article schema generation",
+      "Product schema generation (e-commerce)",
+      "Ready-to-implement code output",
+      "Structured data for AI engine indexing"
     ]
   }
 ]
@@ -154,23 +141,25 @@ const featureCategories = [
 const additionalCategories = [
   {
     icon: Shield,
-    title: "Security & Reliability",
-    features: ["Secure website connection", "Encrypted data transfer", "Limited publishing permissions", "Safe rollback options", "Secure payment handling"]
+    title: "Security & Privacy",
+    features: [
+      "Read-only website crawling",
+      "Encrypted data transfer (HTTPS)",
+      "Secure cloud infrastructure",
+      "No website modifications",
+      "Data never used to train AI models"
+    ]
   },
   {
     icon: Settings,
-    title: "Integrations",
-    features: ["WordPress", "Shopify", "Custom websites", "Google Search Console", "Google Analytics", "More coming soon"]
-  },
-  {
-    icon: Puzzle,
-    title: "Add-ons & Customization",
-    features: ["Extra websites", "Extra keywords", "Extra AI checks", "API access", "White-label (Agency)", "Priority processing"]
-  },
-  {
-    icon: Users,
-    title: "Team & Collaboration (Pro+)",
-    features: ["Multiple user access", "Role-based permissions", "Activity logs", "Team collaboration tools"]
+    title: "Platform",
+    features: [
+      "Dashboard with daily visibility data",
+      "Multi-brand support (plan-dependent)",
+      "Multi-engine tracking in one view",
+      "Historical data retention",
+      "Export reports (plan-dependent)"
+    ]
   }
 ]
 
@@ -180,7 +169,7 @@ function FeatureCard({ category, index }: { category: typeof featureCategories[0
     target: cardRef,
     offset: ["start end", "end start"]
   })
-  
+
   const y = useTransform(scrollYProgress, [0, 1], [50, -50])
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
 
@@ -188,18 +177,18 @@ function FeatureCard({ category, index }: { category: typeof featureCategories[0
     <motion.div
       ref={cardRef}
       style={{ y, opacity }}
-      className={`grid md:grid-cols-2 gap-8 items-center py-16 ${index !== 0 ? 'border-t border-border' : ''}`}
+      className={`grid md:grid-cols-2 gap-8 items-center py-16 ${index !== 0 ? "border-t border-border" : ""}`}
     >
-      <div className={index % 2 === 1 ? 'md:order-2' : ''}>
+      <div className={index % 2 === 1 ? "md:order-2" : ""}>
         <div className="flex items-center gap-3 mb-4">
-          <div className={`w-12 h-12 ${category.color === 'emerald' ? 'bg-emerald/10' : 'bg-violet/10'} rounded-xl flex items-center justify-center`}>
-            <category.icon className={`w-6 h-6 ${category.color === 'emerald' ? 'text-emerald' : 'text-violet'}`} />
+          <div className={`w-12 h-12 ${category.color === "emerald" ? "bg-emerald/10" : "bg-violet/10"} rounded-xl flex items-center justify-center`}>
+            <category.icon className={`w-6 h-6 ${category.color === "emerald" ? "text-emerald" : "text-violet"}`} />
           </div>
           <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
         </div>
         <ul className="grid gap-3 mt-6">
           {category.features.map((feature, i) => (
-            <motion.li 
+            <motion.li
               key={i}
               initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -207,30 +196,30 @@ function FeatureCard({ category, index }: { category: typeof featureCategories[0
               transition={{ delay: i * 0.05 }}
               className="flex items-center gap-3 text-muted-foreground"
             >
-              <Check className={`w-5 h-5 flex-shrink-0 ${category.color === 'emerald' ? 'text-emerald' : 'text-violet'}`} />
+              <Check className={`w-5 h-5 flex-shrink-0 ${category.color === "emerald" ? "text-emerald" : "text-violet"}`} />
               {feature}
             </motion.li>
           ))}
         </ul>
       </div>
-      <div className={index % 2 === 1 ? 'md:order-1' : ''}>
+      <div className={index % 2 === 1 ? "md:order-1" : ""}>
         <div className={`rounded-3xl p-8 aspect-square max-w-md mx-auto flex items-center justify-center ${
-          category.color === 'emerald' 
-            ? 'bg-gradient-to-br from-emerald/10 via-emerald/5 to-transparent' 
-            : 'bg-gradient-to-br from-violet/10 via-violet/5 to-transparent'
+          category.color === "emerald"
+            ? "bg-gradient-to-br from-emerald/10 via-emerald/5 to-transparent"
+            : "bg-gradient-to-br from-violet/10 via-violet/5 to-transparent"
         }`}>
-          <motion.div 
+          <motion.div
             className="relative"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
             <div className={`w-32 h-32 rounded-3xl flex items-center justify-center ${
-              category.color === 'emerald' ? 'bg-emerald/20' : 'bg-violet/20'
+              category.color === "emerald" ? "bg-emerald/20" : "bg-violet/20"
             }`}>
-              <category.icon className={`w-16 h-16 ${category.color === 'emerald' ? 'text-emerald' : 'text-violet'}`} />
+              <category.icon className={`w-16 h-16 ${category.color === "emerald" ? "text-emerald" : "text-violet"}`} />
             </div>
             <div className={`absolute -top-4 -right-4 w-8 h-8 rounded-full flex items-center justify-center ${
-              category.color === 'emerald' ? 'bg-emerald' : 'bg-violet'
+              category.color === "emerald" ? "bg-emerald" : "bg-violet"
             }`}>
               <Zap className="w-4 h-4 text-white" />
             </div>
@@ -245,16 +234,16 @@ export default function FeaturesPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-emerald/5 to-transparent" />
           <div className="absolute top-20 left-1/4 w-96 h-96 bg-emerald/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-violet/10 rounded-full blur-3xl" />
-          
+
           <div className="container mx-auto px-4 relative z-10">
-            <motion.div 
+            <motion.div
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -266,15 +255,15 @@ export default function FeaturesPage() {
               </span>
               <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
                 Everything you need to{" "}
-                <span className="text-gradient">optimize & grow</span>
+                <span className="text-gradient">track & improve AI visibility</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-                Tecsaro AI combines technical SEO, AI search optimization (GEO & AEO), 
-                content publishing, and tracking into a single, easy-to-use dashboard.
+                Tecsaro AI is an AEO platform built to track how visible your brand is in
+                AI-generated answers, detect competitors, and give you clear steps to improve.
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">
-                  Start Test Drive
+                  Start Free Trial
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
@@ -296,18 +285,18 @@ export default function FeaturesPage() {
         {/* Additional Features Grid */}
         <section className="py-20 bg-card">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="text-center mb-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">And Much More</h2>
-              <p className="text-muted-foreground">Additional capabilities to power your growth</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Built to Be Safe & Simple</h2>
+              <p className="text-muted-foreground">Everything runs automatically. You just act on the results.</p>
             </motion.div>
-            
-            <motion.div 
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
+
+            <motion.div
+              className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto"
               variants={staggerContainer}
               initial="initial"
               whileInView="animate"
@@ -326,7 +315,7 @@ export default function FeaturesPage() {
                   <ul className="space-y-2">
                     {category.features.map((feature, i) => (
                       <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-                        <span className="w-1 h-1 bg-emerald rounded-full" />
+                        <span className="w-1 h-1 bg-emerald rounded-full flex-shrink-0" />
                         {feature}
                       </li>
                     ))}
@@ -340,20 +329,20 @@ export default function FeaturesPage() {
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-b from-background to-emerald/5">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Built for Growth</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Start tracking your AI visibility today</h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Tecsaro AI grows with your business — from your first website to enterprise scale.
+                7-day free trial on Starter and Pro. No credit card required.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                   <Link href="/signup">
-                    Start Your Test Drive
+                    Start Your Free Trial
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>

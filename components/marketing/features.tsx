@@ -1,64 +1,67 @@
+
+
+
 "use client"
 
 import React from "react"
 
-import { Search, Zap, Globe, FileText, Settings, BarChart3, Link2, Bot, ArrowUpRight } from "lucide-react"
+import { Globe, MessageSquare, Activity, BarChart3, Users, Lightbulb, Code2, ArrowUpRight } from "lucide-react"
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion"
 import { useRef, useState } from "react"
 
 const features = [
   {
-    name: "AI Search Visibility",
-    description: "Get discovered by ChatGPT, Perplexity, Claude, and other AI search engines.",
-    icon: Search,
-    color: "emerald",
-    gradient: "from-emerald/20 via-emerald/5 to-transparent",
-  },
-  {
-    name: "GEO - Generative Engine Optimization",
-    description: "Optimize for AI-generated responses. Ensure your brand appears in AI summaries.",
-    icon: Bot,
-    color: "violet",
-    gradient: "from-violet/20 via-violet/5 to-transparent",
-  },
-  {
-    name: "AEO - Answer Engine Optimization",
-    description: "Dominate featured snippets and direct answers. Be the definitive source.",
-    icon: Zap,
-    color: "emerald",
-    gradient: "from-emerald/20 via-emerald/5 to-transparent",
-  },
-  {
-    name: "Technical SEO",
-    description: "Automated technical audits and fixes. Schema markup, site speed, crawlability.",
-    icon: Settings,
-    color: "violet",
-    gradient: "from-violet/20 via-violet/5 to-transparent",
-  },
-  {
-    name: "Content AI",
-    description: "AI-powered content optimization with real-time suggestions for relevance.",
-    icon: FileText,
-    color: "emerald",
-    gradient: "from-emerald/20 via-emerald/5 to-transparent",
-  },
-  {
-    name: "Direct Publishing",
-    description: "Push optimized content directly to your CMS. WordPress, Webflow, and more.",
+    name: "Website Crawling",
+    description: "Connect your website and Tecsaro AI extracts page content, headings, FAQs, and structured data to understand your brand.",
     icon: Globe,
-    color: "violet",
-    gradient: "from-violet/20 via-violet/5 to-transparent",
-  },
-  {
-    name: "Smart Automation",
-    description: "Set it and forget it. Automated optimization workflows that run continuously.",
-    icon: Link2,
     color: "emerald",
     gradient: "from-emerald/20 via-emerald/5 to-transparent",
   },
   {
-    name: "Performance Analytics",
-    description: "Track your AI search performance with detailed analytics and insights.",
+    name: "Prompt Generation",
+    description: "Automatically generate the questions real users ask AI engines about your business. Add your own custom prompts too.",
+    icon: MessageSquare,
+    color: "violet",
+    gradient: "from-violet/20 via-violet/5 to-transparent",
+  },
+  {
+    name: "Daily AI Visibility Tracking",
+    description: "Every day, your prompts run across ChatGPT, Gemini, and Perplexity to check whether your brand appears in AI answers.",
+    icon: Activity,
+    color: "emerald",
+    gradient: "from-emerald/20 via-emerald/5 to-transparent",
+  },
+  {
+    name: "AEO Visibility Score",
+    description: "A consolidated score based on brand mentions, position in answers, mention frequency, and competitor presence.",
+    icon: BarChart3,
+    color: "violet",
+    gradient: "from-violet/20 via-violet/5 to-transparent",
+  },
+  {
+    name: "Competitor Detection",
+    description: "Automatically surface competitors appearing in AI answers for your tracked prompts. See who's being recommended instead of you.",
+    icon: Users,
+    color: "emerald",
+    gradient: "from-emerald/20 via-emerald/5 to-transparent",
+  },
+  {
+    name: "Actionable Recommendations",
+    description: "Get clear, prioritized suggestions to improve AI visibility — from FAQ content to topical authority and content structure.",
+    icon: Lightbulb,
+    color: "violet",
+    gradient: "from-violet/20 via-violet/5 to-transparent",
+  },
+  {
+    name: "Schema Generation",
+    description: "Auto-generate FAQ, Organization, Article, and Product schema markup — helping AI engines understand and cite your content.",
+    icon: Code2,
+    color: "emerald",
+    gradient: "from-emerald/20 via-emerald/5 to-transparent",
+  },
+  {
+    name: "Progress Tracking",
+    description: "Monitor your AEO Visibility Score over time. Track how brand mentions, competitor gaps, and recommendations evolve daily.",
     icon: BarChart3,
     color: "violet",
     gradient: "from-violet/20 via-violet/5 to-transparent",
@@ -254,7 +257,7 @@ export function Features() {
       <FloatingOrbs />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8" ref={ref}>
-        {/* Section header with staggered animation */}
+        {/* Section header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -282,7 +285,7 @@ export function Features() {
               whileHover={{ scale: 1.05 }}
             >
               <span className="bg-gradient-to-r from-emerald to-violet bg-clip-text text-transparent">
-                dominate
+                win
               </span>
               <motion.span
                 className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-emerald to-violet rounded-full"
@@ -291,7 +294,7 @@ export function Features() {
                 transition={{ duration: 0.6, delay: 0.5 }}
               />
             </motion.span>{" "}
-            AI search
+            in AI search
           </motion.h2>
 
           <motion.p
@@ -300,18 +303,18 @@ export function Features() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            A complete platform for visibility in the age of AI. Not just tracking - actual optimization and execution.
+            A complete AEO platform — track brand visibility in AI answers, detect competitors, generate schema, and act on clear recommendations.
           </motion.p>
         </div>
 
-        {/* Features grid with 3D cards */}
+        {/* Features grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
             <Feature3DCard key={feature.name} feature={feature} index={index} />
           ))}
         </div>
 
-        {/* Bottom CTA with animation */}
+        {/* Bottom CTA */}
         <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 30 }}

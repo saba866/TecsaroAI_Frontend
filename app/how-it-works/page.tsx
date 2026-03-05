@@ -1,3 +1,6 @@
+
+
+
 "use client"
 
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -6,14 +9,14 @@ import { Header } from "@/components/marketing/header"
 import { Footer } from "@/components/marketing/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { 
-  Link2, 
-  Search, 
-  Lightbulb, 
-  FileText, 
-  Rocket,
+import {
+  Globe,
+  MessageSquare,
+  Activity,
   BarChart3,
-  TrendingUp,
+  Users,
+  Lightbulb,
+  Code2,
   Shield,
   ArrowRight,
   Play,
@@ -23,97 +26,92 @@ import {
 const steps = [
   {
     number: "01",
-    icon: Link2,
+    icon: Globe,
     title: "Connect Your Website",
-    description: "Connect your website in minutes. We support WordPress, Shopify, and custom websites.",
+    description: "Enter your website URL and let Tecsaro AI crawl it. We extract page content, headings, FAQs, and existing structured data to understand your brand.",
     details: [
-      "Secure connection via API or plugin",
-      "Full control of permissions",
-      "Automatic scan preparation",
-      "No technical skills required"
+      "No technical setup required",
+      "Works with any website",
+      "Reads only publicly available content",
+      "Crawl stored for ongoing analysis"
     ],
     color: "emerald"
   },
   {
     number: "02",
-    icon: Search,
-    title: "Run Website Analysis",
-    description: "Tecsaro AI automatically runs comprehensive analysis on your entire website.",
+    icon: MessageSquare,
+    title: "Generate & Select Prompts",
+    description: "Tecsaro AI automatically generates the questions real users are asking AI engines about your industry. Review the suggestions, add your own, and select the ones you want to track.",
     details: [
-      "Technical SEO audit",
-      "Content quality analysis",
-      "GEO (AI search) readiness check",
-      "AEO (answer optimization) scan",
-      "Backlink health check",
-      "Performance & structure checks"
+      "Auto-generated industry prompts",
+      "Custom prompt support",
+      "Brand and competitor queries",
+      "Select the prompts that matter most"
     ],
     color: "violet"
   },
   {
     number: "03",
-    icon: Lightbulb,
-    title: "Get AI Recommendations",
-    description: "Our AI analyzes your site and gives you clear, prioritized suggestions.",
+    icon: Activity,
+    title: "Daily AI Visibility Tracking",
+    description: "Every day, Tecsaro AI runs your selected prompts across ChatGPT, Gemini, and Perplexity — and checks whether your brand appears in the AI-generated answers.",
     details: [
-      "What to fix",
-      "What to optimize",
-      "What to publish",
-      "What's blocking visibility",
-      "What will improve your scores"
+      "Tracks ChatGPT responses",
+      "Tracks Gemini responses",
+      "Tracks Perplexity responses",
+      "Runs automatically every day"
     ],
     color: "emerald"
   },
   {
     number: "04",
-    icon: FileText,
-    title: "Optimize Content & Products",
-    description: "Select any page, blog, or product and improve it with AI suggestions.",
+    icon: BarChart3,
+    title: "View Your AEO Visibility Score",
+    description: "See your consolidated AEO Visibility Score — calculated from brand mentions, position in answers, mention frequency, and competitor presence across all tracked prompts.",
     details: [
-      "Improve content with AI suggestions",
-      "Optimize for SEO, GEO & AEO",
-      "Preview changes before publishing",
-      "Improve visibility scores instantly"
+      "Overall visibility score",
+      "Per-engine breakdown",
+      "Mention frequency trends",
+      "Score changes over time"
     ],
     color: "violet"
   },
   {
     number: "05",
-    icon: Rocket,
-    title: "Publish with One Click",
-    description: "Publish optimized content directly to your website with full control.",
+    icon: Users,
+    title: "Detect Competitors in AI Answers",
+    description: "Tecsaro AI automatically surfaces other brands appearing in AI answers for your tracked prompts. See who is being recommended instead of — or alongside — you.",
     details: [
-      "Publish pages, blogs, products",
-      "All changes are logged",
-      "Rollback available if needed",
-      "Manual approval option"
+      "Auto-detected competitor brands",
+      "Competitor mention frequency",
+      "Side-by-side visibility comparison",
+      "Add competitors to track manually"
     ],
     color: "emerald"
   },
   {
     number: "06",
-    icon: BarChart3,
-    title: "Track Progress",
-    description: "Monitor improvements with clear scores and actionable insights.",
+    icon: Lightbulb,
+    title: "Get Recommendations",
+    description: "Based on your visibility data, Tecsaro AI gives you clear, prioritized recommendations to improve how often your brand appears in AI-generated answers.",
     details: [
-      "Website health score",
-      "AI visibility score",
-      "Keyword tracking",
-      "Backlink trends",
-      "Performance insights"
+      "FAQ content suggestions",
+      "Topical authority guidance",
+      "Content structure improvements",
+      "Schema implementation tips"
     ],
     color: "violet"
   },
   {
     number: "07",
-    icon: TrendingUp,
-    title: "Scale as You Grow",
-    description: "Tecsaro AI grows with your business. Add more as you need.",
+    icon: Code2,
+    title: "Generate & Implement Schema",
+    description: "Tecsaro AI automatically generates structured schema markup for your pages — making it easier for AI engines to understand your content and cite your brand in answers.",
     details: [
-      "Add more websites",
-      "Add more keywords",
-      "Add more AI checks",
-      "Add more publishing",
-      "Add more users"
+      "FAQ schema generation",
+      "Organization schema",
+      "Article schema",
+      "Product schema (where applicable)"
     ],
     color: "emerald"
   }
@@ -125,7 +123,7 @@ function StepCard({ step, index }: { step: typeof steps[0], index: number }) {
     target: cardRef,
     offset: ["start end", "center center"]
   })
-  
+
   const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 1])
 
@@ -135,36 +133,36 @@ function StepCard({ step, index }: { step: typeof steps[0], index: number }) {
       style={{ scale, opacity }}
       className="relative"
     >
-      {/* Connection Line */}
       {index < steps.length - 1 && (
         <div className="absolute left-8 top-24 w-0.5 h-32 bg-gradient-to-b from-border to-transparent hidden md:block" />
       )}
-      
-      <div className={`flex gap-6 ${index % 2 === 1 ? 'md:flex-row-reverse md:text-right' : ''}`}>
-        {/* Step Number */}
+
+      <div className={`flex gap-6 ${index % 2 === 1 ? "md:flex-row-reverse md:text-right" : ""}`}>
         <div className="flex-shrink-0">
           <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ${
-            step.color === 'emerald' ? 'bg-emerald/10' : 'bg-violet/10'
+            step.color === "emerald" ? "bg-emerald/10" : "bg-violet/10"
           }`}>
             <span className={`text-2xl font-bold ${
-              step.color === 'emerald' ? 'text-emerald' : 'text-violet'
+              step.color === "emerald" ? "text-emerald" : "text-violet"
             }`}>
               {step.number}
             </span>
           </div>
         </div>
-        
-        {/* Content */}
+
         <div className="flex-1">
-          <div className={`flex items-center gap-3 mb-3 ${index % 2 === 1 ? 'md:justify-end' : ''}`}>
-            <step.icon className={`w-5 h-5 ${step.color === 'emerald' ? 'text-emerald' : 'text-violet'}`} />
+          <div className={`flex items-center gap-3 mb-3 ${index % 2 === 1 ? "md:justify-end" : ""}`}>
+            <step.icon className={`w-5 h-5 ${step.color === "emerald" ? "text-emerald" : "text-violet"}`} />
             <h3 className="text-xl font-bold text-foreground">{step.title}</h3>
           </div>
           <p className="text-muted-foreground mb-4">{step.description}</p>
-          <ul className={`space-y-2 ${index % 2 === 1 ? 'md:items-end' : ''}`}>
+          <ul className="space-y-2">
             {step.details.map((detail, i) => (
-              <li key={i} className={`flex items-center gap-2 text-sm text-foreground ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                <Check className={`w-4 h-4 flex-shrink-0 ${step.color === 'emerald' ? 'text-emerald' : 'text-violet'}`} />
+              <li
+                key={i}
+                className={`flex items-center gap-2 text-sm text-foreground ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}
+              >
+                <Check className={`w-4 h-4 flex-shrink-0 ${step.color === "emerald" ? "text-emerald" : "text-violet"}`} />
                 {detail}
               </li>
             ))}
@@ -181,22 +179,22 @@ export default function HowItWorksPage() {
     target: containerRef,
     offset: ["start start", "end end"]
   })
-  
+
   const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-violet/5 to-transparent" />
           <div className="absolute top-20 right-1/4 w-96 h-96 bg-emerald/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-violet/10 rounded-full blur-3xl" />
-          
+
           <div className="container mx-auto px-4 relative z-10">
-            <motion.div 
+            <motion.div
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -207,16 +205,18 @@ export default function HowItWorksPage() {
                 How It Works
               </span>
               <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-                Start optimizing in{" "}
-                <span className="text-gradient">minutes, not weeks</span>
+                From website to{" "}
+                <span className="text-gradient">AI answer visibility</span>
+                {" "}in minutes
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-                Tecsaro AI helps you optimize, publish, and get discovered in the age of AI search — 
-                in just a few simple steps. No complex setup. No technical skills needed.
+                Tecsaro AI crawls your website, tracks your brand across AI engines daily,
+                detects competitors, and tells you exactly what to do to improve your visibility —
+                all automatically.
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">
-                  Start Your Test Drive
+                  Start Your Free Trial
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
@@ -226,14 +226,13 @@ export default function HowItWorksPage() {
 
         {/* Steps Section */}
         <section ref={containerRef} className="py-20 relative">
-          {/* Progress Bar */}
           <div className="absolute left-4 md:left-1/2 top-0 w-1 h-full bg-border hidden md:block">
-            <motion.div 
+            <motion.div
               className="w-full bg-gradient-to-b from-emerald to-violet"
               style={{ height: progressHeight }}
             />
           </div>
-          
+
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto space-y-20">
               {steps.map((step, index) => (
@@ -246,7 +245,7 @@ export default function HowItWorksPage() {
         {/* Security Badge */}
         <section className="py-16 bg-card">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-6 text-center md:text-left"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -256,10 +255,10 @@ export default function HowItWorksPage() {
                 <Shield className="w-8 h-8 text-emerald" />
               </div>
               <div>
-                <h3 className="text-xl font-bold mb-2 text-foreground">Safe & Secure</h3>
+                <h3 className="text-xl font-bold mb-2 text-foreground">Safe & Non-Invasive</h3>
                 <p className="text-muted-foreground">
-                  Your data is protected with secure infrastructure, limited access, 
-                  and industry-standard security practices.
+                  Tecsaro AI only reads publicly available content on your website — the same
+                  content AI engines already access. We never modify your website.
                 </p>
               </div>
             </motion.div>
@@ -269,19 +268,20 @@ export default function HowItWorksPage() {
         {/* CTA Section */}
         <section className="py-20 bg-charcoal text-white">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Start in minutes</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">See your AI visibility in minutes</h2>
               <p className="text-xl text-white/70 mb-8">
-                Connect your website, run your first analysis, and see results immediately.
+                Connect your website, set up your prompts, and get your first AEO Visibility Score today.
+                No credit card required.
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">
-                  Start Your Test Drive
+                  Start Your Free Trial
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>

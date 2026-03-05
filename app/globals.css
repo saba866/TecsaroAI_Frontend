@@ -191,3 +191,82 @@
     @apply bg-gradient-to-r from-emerald to-violet bg-clip-text text-transparent;
   }
 }
+
+
+
+/* Force onboarding inputs to always show white text */
+.glass-dark input,
+.glass-dark select,
+.glass-dark textarea {
+  color: white !important;
+}
+
+.glass-dark input::placeholder {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.glass-dark label {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.glass-dark p {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.glass-dark h2 {
+  color: white;
+}
+
+
+/* ─────────────────────────────────────────
+   ONBOARDING — Select / Input / Text fixes
+───────────────────────────────────────── */
+
+/* All select dropdowns */
+select {
+  color-scheme: dark;
+  color: white;
+  background-color: #0e1117;
+}
+
+/* All option items inside selects */
+select option {
+  background-color: #0e1117;
+  color: white;
+}
+
+select option:disabled {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* All text inputs */
+input[type="text"],
+input[type="url"],
+input[type="email"],
+input[type="password"] {
+  color: white;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.30);
+}
+
+/* Labels inside glass-dark cards */
+.glass-dark label {
+  color: rgba(255, 255, 255, 0.80);
+}
+
+/* Headings inside glass-dark cards */
+.glass-dark h2 {
+  color: white;
+}
+
+/* Description / subtitle text inside glass-dark cards */
+.glass-dark p.subtitle {
+  color: rgba(255, 255, 255, 0.50);
+}
+
+/* Muted text helper class */
+.text-muted {
+  color: rgba(255, 255, 255, 0.45);
+}

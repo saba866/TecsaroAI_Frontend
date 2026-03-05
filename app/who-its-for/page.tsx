@@ -1,252 +1,3 @@
-// "use client"
-
-// import { motion } from "framer-motion"
-// import { Header } from "@/components/marketing/header"
-// import { Footer } from "@/components/marketing/footer"
-// import { Button } from "@/components/ui/button"
-// import Link from "next/link"
-// import { 
-//   Rocket, 
-//   ShoppingBag, 
-//   Code, 
-//   Building2,
-//   BarChart3,
-//   Globe,
-//   ArrowRight,
-//   Check,
-//   X,
-//   Users
-// } from "lucide-react"
-
-// const fadeInUp = {
-//   initial: { opacity: 0, y: 20 },
-//   animate: { opacity: 1, y: 0 },
-//   transition: { duration: 0.5 }
-// }
-
-// const staggerContainer = {
-//   animate: {
-//     transition: {
-//       staggerChildren: 0.1
-//     }
-//   }
-// }
-
-// const audiences = [
-//   {
-//     icon: Rocket,
-//     title: "Founders & Startups",
-//     description: "If you're building a startup or new product",
-//     problems: [
-//       "You need fast visibility",
-//       "You don't have time to learn complex SEO",
-//       "You want clear actions, not reports",
-//       "You want to compete with bigger companies"
-//     ],
-//     solution: "Tecsaro AI helps you optimize, publish, and grow from day one."
-//   },
-//   {
-//     icon: ShoppingBag,
-//     title: "E-commerce Businesses",
-//     description: "If you run an online store",
-//     problems: [
-//       "Your products need to be discovered",
-//       "AI search is changing how people buy",
-//       "Content and product optimization matters",
-//       "Technical issues hurt sales"
-//     ],
-//     solution: "Tecsaro AI helps you optimize products, publish faster, and improve discoverability."
-//   },
-//   {
-//     icon: Code,
-//     title: "SaaS Companies",
-//     description: "If you're growing a SaaS",
-//     problems: [
-//       "Organic traffic matters",
-//       "Content drives signups",
-//       "Technical SEO is critical",
-//       "AI search is becoming a major channel"
-//     ],
-//     solution: "Tecsaro AI helps you stay visible across Google and AI answers."
-//   },
-//   {
-//     icon: Building2,
-//     title: "Agencies & Consultants",
-//     description: "If you manage websites for clients",
-//     problems: [
-//       "You need speed",
-//       "You need automation",
-//       "You need scalable tools",
-//       "You need clear reports",
-//       "You need better margins"
-//     ],
-//     solution: "Tecsaro AI helps you manage multiple sites and deliver better results with less effort."
-//   },
-//   {
-//     icon: BarChart3,
-//     title: "Marketing Teams",
-//     description: "If you manage growth or marketing",
-//     problems: [
-//       "You need reliable data",
-//       "You need execution tools",
-//       "You need faster publishing",
-//       "You need cross-team clarity"
-//     ],
-//     solution: "Tecsaro AI becomes your single optimization platform."
-//   },
-//   {
-//     icon: Globe,
-//     title: "Growing Businesses",
-//     description: "If your website is important for leads, sales, or visibility",
-//     problems: [
-//       "Search landscape is changing",
-//       "AI is reshaping discovery",
-//       "Need to stay competitive",
-//       "Limited resources for SEO"
-//     ],
-//     solution: "Tecsaro AI helps you stay competitive as search evolves."
-//   }
-// ]
-
-// const notFor = [
-//   "Hobby bloggers looking for free tools",
-//   "One-page websites",
-//   "Offline-only businesses",
-//   "People expecting guaranteed rankings"
-// ]
-
-// export default function WhoItsForPage() {
-//   return (
-//     <div className="min-h-screen bg-background">
-//       <Header />
-      
-//       <main>
-//         {/* Hero Section */}
-//         <section className="relative pt-32 pb-20 overflow-hidden">
-//           <div className="absolute inset-0 bg-gradient-to-b from-emerald/5 to-transparent" />
-//           <div className="absolute top-20 left-1/4 w-96 h-96 bg-emerald/10 rounded-full blur-3xl" />
-//           <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-violet/10 rounded-full blur-3xl" />
-          
-//           <div className="container mx-auto px-4 relative z-10">
-//             <motion.div 
-//               className="max-w-4xl mx-auto text-center"
-//               initial={{ opacity: 0, y: 30 }}
-//               animate={{ opacity: 1, y: 0 }}
-//               transition={{ duration: 0.6 }}
-//             >
-//               <span className="inline-flex items-center gap-2 px-4 py-2 bg-emerald/10 text-emerald rounded-full text-sm font-medium mb-6">
-//                 <Users className="w-4 h-4" />
-//                 Who It's For
-//               </span>
-//               <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-//                 Built for businesses that{" "}
-//                 <span className="text-gradient">depend on visibility</span>
-//               </h1>
-//               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-//                 Tecsaro AI is built for anyone who wants their website to be visible, 
-//                 discoverable, and competitive in the age of AI search — without needing to be an SEO expert.
-//               </p>
-//             </motion.div>
-//           </div>
-//         </section>
-
-//         {/* Audience Cards */}
-//         <section className="py-20">
-//           <div className="container mx-auto px-4">
-//             <motion.div 
-//               className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto"
-//               variants={staggerContainer}
-//               initial="initial"
-//               whileInView="animate"
-//               viewport={{ once: true }}
-//             >
-//               {audiences.map((audience, index) => (
-//                 <motion.div
-//                   key={index}
-//                   variants={fadeInUp}
-//                   className="group bg-card border border-border rounded-2xl p-6 hover:border-emerald/50 hover:shadow-xl hover:shadow-emerald/5 transition-all duration-300"
-//                 >
-//                   <div className="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-emerald/20 transition-colors">
-//                     <audience.icon className="w-6 h-6 text-emerald" />
-//                   </div>
-//                   <h3 className="text-xl font-bold mb-2 text-foreground">{audience.title}</h3>
-//                   <p className="text-muted-foreground mb-4">{audience.description}</p>
-                  
-//                   <div className="border-t border-border pt-4 mb-4">
-//                     <p className="text-sm font-medium text-foreground mb-2">Your challenges:</p>
-//                     <ul className="space-y-1.5">
-//                       {audience.problems.map((problem, i) => (
-//                         <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-//                           <span className="w-1 h-1 bg-amber rounded-full mt-2 flex-shrink-0" />
-//                           {problem}
-//                         </li>
-//                       ))}
-//                     </ul>
-//                   </div>
-                  
-//                   <div className="bg-emerald/5 rounded-lg p-3">
-//                     <p className="text-sm text-emerald font-medium">{audience.solution}</p>
-//                   </div>
-//                 </motion.div>
-//               ))}
-//             </motion.div>
-//           </div>
-//         </section>
-
-//         {/* Not For Section */}
-//         <section className="py-16 bg-card">
-//           <div className="container mx-auto px-4">
-//             <motion.div 
-//               className="max-w-2xl mx-auto text-center"
-//               initial={{ opacity: 0, y: 20 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true }}
-//             >
-//               <h2 className="text-2xl font-bold mb-6 text-foreground">Who it's NOT for</h2>
-//               <div className="flex flex-wrap justify-center gap-3">
-//                 {notFor.map((item, index) => (
-//                   <span 
-//                     key={index}
-//                     className="inline-flex items-center gap-2 px-4 py-2 bg-background border border-border rounded-full text-sm text-muted-foreground"
-//                   >
-//                     <X className="w-4 h-4 text-destructive" />
-//                     {item}
-//                   </span>
-//                 ))}
-//               </div>
-//             </motion.div>
-//           </div>
-//         </section>
-
-//         {/* One-liner Section */}
-//         <section className="py-20 bg-charcoal text-white">
-//           <div className="container mx-auto px-4">
-//             <motion.div 
-//               className="max-w-3xl mx-auto text-center"
-//               initial={{ opacity: 0, y: 30 }}
-//               whileInView={{ opacity: 1, y: 0 }}
-//               viewport={{ once: true }}
-//             >
-//               <h2 className="text-3xl md:text-4xl font-bold mb-6">One-line summary</h2>
-//               <p className="text-xl text-white/80 mb-8">
-//                 Tecsaro AI is for businesses that depend on website visibility to grow 
-//                 and want to be discoverable in AI-powered search.
-//               </p>
-//               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
-//                 <Link href="/signup">
-//                   Start Your Test Drive
-//                   <ArrowRight className="ml-2 w-4 h-4" />
-//                 </Link>
-//               </Button>
-//             </motion.div>
-//           </div>
-//         </section>
-//       </main>
-
-//       <Footer />
-//     </div>
-//   )
-// }
 
 
 
@@ -274,73 +25,73 @@ const audiences = [
     icon: Rocket,
     title: "Founders & Startups",
     points: [
-      "Need fast visibility",
-      "No time for complex SEO",
-      "Want actions, not reports",
-      "Compete with bigger companies",
+      "Need AI visibility from day one",
+      "No time for complex analysis",
+      "Want to compete with bigger brands",
+      "Need clear, actionable insights",
     ],
     description:
-      "Tecsaro AI helps you optimize, publish, and grow from day one — without SEO complexity.",
+      "Tecsaro AI shows you if your brand appears in AI answers and tells you exactly what to do to improve — without needing a team of specialists.",
   },
   {
     icon: ShoppingBag,
     title: "E-commerce Businesses",
     points: [
-      "Products need discovery",
-      "AI search affects buying",
-      "Optimization impacts sales",
-      "Technical issues hurt revenue",
+      "Shoppers use AI for recommendations",
+      "Products need AI discoverability",
+      "Competitors may already be cited",
+      "Schema impacts AI answer inclusion",
     ],
     description:
-      "Optimize products, publish faster, and improve discoverability across search and AI answers.",
+      "Track whether your products and brand are being recommended in AI answers, detect competitors, and generate schema to improve your chances of being cited.",
   },
   {
     icon: Code,
     title: "SaaS Companies",
     points: [
-      "Organic traffic matters",
-      "Content drives signups",
-      "Technical SEO is critical",
-      "AI search is a new channel",
+      "Users ask AI engines for tool recommendations",
+      "AI answer presence drives signups",
+      "Competitor mentions are a real risk",
+      "Topical authority affects AI citations",
     ],
     description:
-      "Stay visible across Google and AI answers with continuous optimization.",
+      "Know if your product is being recommended by AI engines, track competitor mentions, and get recommendations to strengthen your AI answer presence.",
   },
   {
     icon: Users,
     title: "Agencies & Consultants",
     points: [
-      "Need speed & automation",
-      "Manage multiple clients",
-      "Scale without extra effort",
-      "Deliver better reports",
+      "Clients ask about AI visibility",
+      "Need scalable tracking across clients",
+      "Manual monitoring is time-consuming",
+      "Want client-ready reporting",
     ],
     description:
-      "Manage multiple websites, automate fixes, and improve margins with Tecsaro AI.",
+      "Track AI visibility across multiple client websites, detect competitors in answers, and deliver clear reports — all from one platform.",
   },
   {
     icon: BarChart3,
     title: "Marketing Teams",
     points: [
-      "Need reliable data",
-      "Need execution tools",
-      "Need faster publishing",
-      "Need cross-team clarity",
+      "Need AI visibility data alongside other metrics",
+      "Brand monitoring now includes AI engines",
+      "Content strategy must account for AEO",
+      "Need clear metrics to report to leadership",
     ],
     description:
-      "Use one platform for analysis, optimization, publishing, and reporting.",
+      "Add AI answer visibility to your existing measurement stack. Track daily changes, monitor competitors, and prioritize content improvements.",
   },
   {
     icon: Globe,
     title: "Growing Businesses",
     points: [
-      "Website drives leads",
-      "Visibility drives revenue",
-      "Search is evolving fast",
-      "AI answers matter",
+      "Website drives leads and revenue",
+      "AI discovery is replacing traditional search",
+      "Invisible in AI = losing potential customers",
+      "Need to act now, not later",
     ],
     description:
-      "Stay competitive as search evolves with AI-powered optimization.",
+      "Stay competitive as AI-powered search becomes the default. Know your current AI visibility and take the right steps to improve it.",
   },
 ]
 
@@ -360,15 +111,15 @@ export default function WhoItsForPage() {
             className="text-center mb-20"
           >
             <span className="inline-block px-4 py-2 bg-emerald/10 text-emerald rounded-full text-sm font-medium mb-6">
-              Who It’s For
+              Who It's For
             </span>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-              Built for businesses that want to{" "}
-              <span className="text-emerald">win in AI search</span>
+              Built for businesses that need to be{" "}
+              <span className="text-emerald">found in AI answers</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Tecsaro AI is built for anyone who wants their website to be visible,
-              discoverable, and competitive — without needing to be an SEO expert.
+              Tecsaro AI is for any business that wants to know where they stand in AI-generated
+              answers — and wants a clear path to improving that visibility.
             </p>
           </motion.div>
 
@@ -394,7 +145,7 @@ export default function WhoItsForPage() {
                 <ul className="space-y-2 text-gray-400 text-sm mb-4">
                   {audience.points.map((point, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="mt-1 h-1.5 w-1.5 bg-emerald rounded-full" />
+                      <span className="mt-1 h-1.5 w-1.5 bg-emerald rounded-full flex-shrink-0" />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -423,9 +174,9 @@ export default function WhoItsForPage() {
 
             <ul className="grid md:grid-cols-2 gap-4 text-gray-400">
               <li>• Hobby bloggers looking for free tools</li>
-              <li>• One-page websites</li>
-              <li>• Offline-only businesses</li>
-              <li>• People expecting guaranteed rankings</li>
+              <li>• One-page or offline-only businesses</li>
+              <li>• People expecting guaranteed placements in AI answers</li>
+              <li>• Businesses with no online presence to optimize</li>
             </ul>
           </motion.div>
 
@@ -438,8 +189,8 @@ export default function WhoItsForPage() {
           >
             <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
               <span className="text-white font-semibold">One-line summary:</span>{" "}
-              Tecsaro AI is for businesses that depend on website visibility to grow
-              and want to be discoverable in AI-powered search.
+              Tecsaro AI is for businesses that depend on being discovered online —
+              and want to know how visible they are in AI-powered answers today.
             </p>
 
             <Button

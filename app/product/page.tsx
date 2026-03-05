@@ -1,3 +1,5 @@
+
+
 "use client"
 
 import { motion } from "framer-motion"
@@ -5,17 +7,14 @@ import { Header } from "@/components/marketing/header"
 import { Footer } from "@/components/marketing/footer"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { 
-  Search, 
-  Bot, 
-  FileText, 
-  Rocket,
-  Link2,
+import {
+  Globe,
+  MessageSquare,
+  Activity,
   BarChart3,
-  Settings,
-  Shield,
-  Puzzle,
   Users,
+  Lightbulb,
+  Code2,
   ArrowRight,
   Check,
   Sparkles
@@ -37,64 +36,98 @@ const staggerContainer = {
 
 const productFeatures = [
   {
-    icon: Search,
-    title: "Website Optimization Engine",
-    description: "Connect your website and instantly see technical SEO health, crawlability issues, performance problems, content gaps, and AI search readiness.",
-    points: ["Full technical SEO audit", "Website health score", "Crawlability & indexability", "Performance analysis"]
+    icon: Globe,
+    title: "Website Crawling",
+    description: "Connect your website and let Tecsaro AI crawl and extract what matters — page content, headings, FAQs, and structured data — to build a complete picture of your brand's online presence.",
+    points: [
+      "Full website content extraction",
+      "Heading & FAQ detection",
+      "Structured data analysis",
+      "Stored for ongoing analysis"
+    ]
   },
   {
-    icon: Bot,
-    title: "AI Search Optimization (GEO & AEO)",
-    description: "Tecsaro AI helps your website appear in AI answers, conversational search, and answer engines.",
-    points: ["Optimize for ChatGPT & Gemini", "Answer engine visibility", "AI-ready structure", "Citation opportunities"]
+    icon: MessageSquare,
+    title: "Smart Prompt Generation",
+    description: "Tecsaro AI automatically generates the questions and prompts people are likely to ask AI engines about your business. You can also add your own custom prompts to track exactly what matters to you.",
+    points: [
+      "Auto-generated industry prompts",
+      "Custom prompt support",
+      "Business & competitor queries",
+      "Prompt library management"
+    ]
   },
   {
-    icon: FileText,
-    title: "Content & Product Optimization",
-    description: "Improve blog posts, pages, and product descriptions with AI suggestions. Preview changes and publish safely.",
-    points: ["AI content suggestions", "Product optimization", "Bulk improvements", "Preview before publish"]
-  },
-  {
-    icon: Rocket,
-    title: "Built-in Publishing",
-    description: "Publish optimized content directly to WordPress, Shopify, or custom websites with full control and rollback.",
-    points: ["One-click publishing", "Safe rollback options", "Change tracking", "Manual approval available"]
-  },
-  {
-    icon: Link2,
-    title: "Backlink & Authority Insights",
-    description: "Understand your backlink health, referring domains, new & lost links, and competitive gaps.",
-    points: ["Backlink health check", "Referring domains", "Toxic link signals", "Competitor comparison"]
+    icon: Activity,
+    title: "Daily AI Visibility Tracking",
+    description: "Every day, Tecsaro AI runs your prompts across the major AI answer engines and checks whether your brand appears in the responses — giving you a real-time pulse on your AI discoverability.",
+    points: [
+      "Tracks ChatGPT responses",
+      "Tracks Gemini responses",
+      "Tracks Perplexity responses",
+      "Daily automated monitoring"
+    ]
   },
   {
     icon: BarChart3,
-    title: "Clear Tracking & Progress",
-    description: "Track website health score, AI visibility score, keyword movement, and growth over time.",
-    points: ["Website health score", "AI visibility score", "Keyword tracking", "Progress insights"]
+    title: "AEO Visibility Score",
+    description: "Get a clear, consolidated score that tells you exactly how visible your brand is in AI-generated answers — based on mentions, position, frequency, and competitor presence.",
+    points: [
+      "Brand mention tracking",
+      "Position-in-answer scoring",
+      "Mention frequency analysis",
+      "Score trends over time"
+    ]
+  },
+  {
+    icon: Users,
+    title: "Competitor Detection",
+    description: "Discover which competitors are showing up in AI answers instead of — or alongside — your brand. Tecsaro AI surfaces them automatically and lets you track them going forward.",
+    points: [
+      "Auto-detected competitors",
+      "Competitor mention tracking",
+      "AI answer gap analysis",
+      "Competitor suggestions"
+    ]
+  },
+  {
+    icon: Lightbulb,
+    title: "Actionable Recommendations",
+    description: "Get clear, prioritized suggestions to improve your AI visibility — from adding FAQ sections and improving topical authority to enhancing your schema and content structure.",
+    points: [
+      "FAQ content suggestions",
+      "Topical authority guidance",
+      "Schema improvement tips",
+      "Content structure advice"
+    ]
+  },
+  {
+    icon: Code2,
+    title: "Schema Generation",
+    description: "Tecsaro AI automatically generates structured schema markup for your pages — making it easier for AI engines to understand and cite your content in their answers.",
+    points: [
+      "FAQ schema generation",
+      "Organization schema",
+      "Article schema",
+      "Product schema (where applicable)"
+    ]
   }
-]
-
-const additionalFeatures = [
-  { icon: Settings, title: "Simple Integrations", items: ["WordPress", "Shopify", "Google Search Console", "Google Analytics"] },
-  { icon: Shield, title: "Secure by Design", items: ["Encrypted connections", "Limited permissions", "Safe rollback", "Secure publishing"] },
-  { icon: Puzzle, title: "Flexible Plans", items: ["Starter", "Pro", "Agency", "Enterprise"] },
-  { icon: Users, title: "Built for Teams", items: ["Multiple users", "Role-based access", "Activity logs", "Client management"] }
 ]
 
 export default function ProductPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-20 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-violet/5 to-transparent" />
           <div className="absolute top-40 right-1/4 w-96 h-96 bg-emerald/10 rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-violet/10 rounded-full blur-3xl" />
-          
+
           <div className="container mx-auto px-4 relative z-10">
-            <motion.div 
+            <motion.div
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -105,12 +138,12 @@ export default function ProductPage() {
                 Product
               </span>
               <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
-                The all-in-one platform to{" "}
-                <span className="text-gradient">optimize, publish & discover</span>
+                Know exactly how visible your brand is{" "}
+                <span className="text-gradient">in AI answers</span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-                Tecsaro AI is built to help businesses fix technical SEO, optimize for AI search (GEO & AEO), 
-                publish content and products, and track performance — all from one powerful dashboard.
+                Tecsaro AI helps you track, understand, and improve how your brand appears
+                in AI-generated answers — across ChatGPT, Gemini, and Perplexity.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
@@ -130,17 +163,17 @@ export default function ProductPage() {
         {/* Tagline Banner */}
         <section className="py-12 bg-charcoal text-white">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="flex flex-col md:flex-row items-center justify-center gap-8 text-center md:text-left"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              <p className="text-lg md:text-xl font-medium">No more juggling tools.</p>
+              <p className="text-lg md:text-xl font-medium">Track AI mentions daily.</p>
               <span className="hidden md:block w-2 h-2 bg-emerald rounded-full" />
-              <p className="text-lg md:text-xl font-medium">No more confusing reports.</p>
+              <p className="text-lg md:text-xl font-medium">Detect competitors in AI answers.</p>
               <span className="hidden md:block w-2 h-2 bg-emerald rounded-full" />
-              <p className="text-lg md:text-xl font-medium text-emerald-light">Just clear actions and real progress.</p>
+              <p className="text-lg md:text-xl font-medium text-emerald-light">Improve your visibility with clear actions.</p>
             </motion.div>
           </div>
         </section>
@@ -148,19 +181,20 @@ export default function ProductPage() {
         {/* Main Features Section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Everything You Need</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-foreground">Everything You Need for AEO</h2>
               <p className="text-muted-foreground max-w-2xl mx-auto">
-                One platform to handle technical SEO, AI optimization, content publishing, and performance tracking
+                One platform to crawl your website, track AI answer visibility, detect competitors,
+                and get actionable recommendations to improve your brand's presence in AI engines.
               </p>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="space-y-8 max-w-6xl mx-auto"
               variants={staggerContainer}
               initial="initial"
@@ -171,9 +205,9 @@ export default function ProductPage() {
                 <motion.div
                   key={index}
                   variants={fadeInUp}
-                  className={`grid md:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
+                  className={`grid md:grid-cols-2 gap-8 items-center`}
                 >
-                  <div className={`${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                  <div className={`${index % 2 === 1 ? "md:order-2" : ""}`}>
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 bg-emerald/10 rounded-xl flex items-center justify-center">
                         <feature.icon className="w-6 h-6 text-emerald" />
@@ -190,7 +224,7 @@ export default function ProductPage() {
                       ))}
                     </ul>
                   </div>
-                  <div className={`${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                  <div className={`${index % 2 === 1 ? "md:order-1" : ""}`}>
                     <div className="bg-gradient-to-br from-emerald/10 to-violet/10 rounded-3xl p-8 aspect-video flex items-center justify-center">
                       <div className="bg-card rounded-2xl shadow-xl p-6 w-full max-w-sm">
                         <div className="flex items-center gap-3 mb-4">
@@ -211,44 +245,10 @@ export default function ProductPage() {
           </div>
         </section>
 
-        {/* Additional Features Grid */}
-        <section className="py-20 bg-card">
-          <div className="container mx-auto px-4">
-            <motion.div 
-              className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto"
-              variants={staggerContainer}
-              initial="initial"
-              whileInView="animate"
-              viewport={{ once: true }}
-            >
-              {additionalFeatures.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  variants={fadeInUp}
-                  className="bg-background border border-border rounded-2xl p-6"
-                >
-                  <div className="w-10 h-10 bg-violet/10 rounded-lg flex items-center justify-center mb-4">
-                    <feature.icon className="w-5 h-5 text-violet" />
-                  </div>
-                  <h3 className="font-semibold mb-3 text-foreground">{feature.title}</h3>
-                  <ul className="space-y-2">
-                    {feature.items.map((item, i) => (
-                      <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
-                        <span className="w-1 h-1 bg-emerald rounded-full" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
         {/* Why Tecsaro Section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -256,8 +256,9 @@ export default function ProductPage() {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Why Tecsaro AI?</h2>
               <p className="text-xl text-muted-foreground mb-8">
-                Because the future of search is AI-driven — and websites need to be ready. 
-                Tecsaro AI helps you stay visible today and tomorrow.
+                AI engines are now a primary discovery channel. Millions of people ask ChatGPT, Gemini,
+                and Perplexity questions every day — and if your brand isn't in those answers, you're
+                invisible to a growing audience. Tecsaro AI gives you the clarity and tools to change that.
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">

@@ -1,19 +1,23 @@
+
+
+
+
 "use client"
 
 import React from "react"
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Zap, Globe, BarChart3, Rocket, CheckCircle, Sparkles } from "lucide-react"
+import { ArrowRight, Zap, Globe, BarChart3, Users, CheckCircle, Sparkles } from "lucide-react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 
 const workflow = [
   { step: "Connect", icon: Zap, description: "Link your site" },
-  { step: "Analyze", icon: BarChart3, description: "AI audit" },
-  { step: "Optimize", icon: Globe, description: "Auto-fix issues" },
-  { step: "Publish", icon: Rocket, description: "Push to CMS" },
-  { step: "Track", icon: CheckCircle, description: "Monitor results" },
+  { step: "Crawl", icon: Globe, description: "Extract content" },
+  { step: "Track", icon: BarChart3, description: "Daily AI checks" },
+  { step: "Score", icon: CheckCircle, description: "AEO visibility" },
+  { step: "Improve", icon: Users, description: "Act on insights" },
 ]
 
 // Text scramble component
@@ -347,11 +351,11 @@ export function Hero() {
               animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
-            <span className="text-sm text-gray-400 relative z-10">AI-Powered Optimization Platform</span>
+            <span className="text-sm text-gray-400 relative z-10">AEO Platform — Track your AI answer visibility</span>
             <Sparkles className="h-3 w-3 text-amber" />
           </motion.div>
 
-          {/* Main headline with advanced animations */}
+          {/* Main headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -364,7 +368,7 @@ export function Hero() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
             >
-              Most tools track visibility.
+              Most brands are invisible in AI answers.
             </motion.span>
             <motion.span
               className="block mt-2"
@@ -374,7 +378,7 @@ export function Hero() {
             >
               <ScrambleText text="Tecsaro AI" className="text-white cursor-pointer" />{" "}
               <GradientText>
-                <TypewriterText words={["fixes", "optimizes", "transforms"]} />
+                <TypewriterText words={["tracks", "measures", "improves"]} />
               </GradientText>
             </motion.span>
             <motion.span
@@ -383,14 +387,14 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
             >
-              and{" "}
+              your{" "}
               <motion.span
                 className="bg-gradient-to-r from-violet to-violet-light bg-clip-text text-transparent inline-block"
                 whileHover={{ scale: 1.05 }}
               >
-                publishes
+                AI answer
               </motion.span>{" "}
-              for AI search.
+              visibility.
             </motion.span>
           </motion.h1>
 
@@ -401,11 +405,10 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.7 }}
             className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
           >
-            SEO + GEO + AEO + Publishing + Automation in one platform. Get discovered by ChatGPT, Perplexity, and
-            next-gen search engines.
+            Track your brand across ChatGPT, Gemini, and Perplexity daily. Detect competitors in AI answers. Get clear recommendations to improve your visibility.
           </motion.p>
 
-          {/* CTAs with magnetic effect */}
+          {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -430,7 +433,7 @@ export function Hero() {
                     transition={{ duration: 0.5 }}
                   />
                   <span className="relative z-10 flex items-center">
-                    Start Test Drive
+                    Start Free Trial
                     <motion.span
                       className="inline-block ml-2"
                       animate={{ x: [0, 5, 0] }}
@@ -455,13 +458,13 @@ export function Hero() {
                     whileHover={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.3 }}
                   />
-                  <span className="relative z-10">View Product</span>
+                  <span className="relative z-10">See How It Works</span>
                 </Button>
               </motion.div>
             </Link>
           </motion.div>
 
-          {/* Workflow strip with staggered reveal */}
+          {/* Workflow strip */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -527,14 +530,13 @@ export function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Hero card / Dashboard preview with 3D tilt */}
+        {/* Hero card / Dashboard preview */}
         <motion.div
           className="mt-16 relative"
           initial={{ opacity: 0, y: 100, rotateX: 10 }}
           animate={{ opacity: 1, y: 0, rotateX: 0 }}
           transition={{ delay: 1.2, duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Glow effect */}
           <motion.div
             className="absolute -inset-4 bg-gradient-to-r from-emerald/30 via-violet/30 to-emerald/30 rounded-3xl blur-3xl"
             animate={{
@@ -546,7 +548,7 @@ export function Hero() {
 
           <TiltCard className="relative">
             <div className="relative rounded-2xl border border-white/10 bg-charcoal-light/90 backdrop-blur-xl overflow-hidden shadow-2xl">
-              {/* Browser bar with animations */}
+              {/* Browser bar */}
               <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/5">
                 <div className="flex gap-1.5">
                   {["bg-red-500", "bg-yellow-500", "bg-green-500"].map((color, i) => (
@@ -576,9 +578,9 @@ export function Hero() {
               <div className="p-6 sm:p-8">
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                   {[
-                    { label: "AI Visibility Score", value: 94, suffix: "", change: "+12%", color: "emerald" },
-                    { label: "Pages Optimized", value: 1248, suffix: "", change: "+86 this week", color: "violet" },
-                    { label: "Search Impressions", value: 2.4, suffix: "M", change: "+34%", color: "amber" },
+                    { label: "AEO Visibility Score", value: 74, suffix: "", change: "+18 this week", color: "emerald" },
+                    { label: "AI Engines Tracked", value: 3, suffix: "", change: "ChatGPT · Gemini · Perplexity", color: "violet" },
+                    { label: "Brand Mentions Detected", value: 284, suffix: "", change: "+42 this week", color: "amber" },
                   ].map((stat, index) => (
                     <motion.div
                       key={stat.label}

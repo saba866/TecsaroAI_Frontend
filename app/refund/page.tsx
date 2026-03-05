@@ -1,25 +1,26 @@
+
+
+
 "use client"
 
 import { motion } from "framer-motion"
 import { Header } from "@/components/marketing/header"
 import { Footer } from "@/components/marketing/footer"
-import { RotateCcw, Check, X, AlertCircle } from "lucide-react"
+import { RotateCcw, Check, X, AlertCircle, Info, CreditCard } from "lucide-react"
 
-const eligibleConditions = [
-  "Less than 20% of your plan limits have been used",
-  "No bulk publishing has been performed",
-  "No API access has been used",
-  "No abuse or misuse is detected",
-  "The request is submitted within 7 days of payment"
+const howItWorks = [
+  "Sign up and start your 7-day free trial — no credit card required",
+  "Get full access to AI visibility tracking, prompts, competitor detection, and schema generation",
+  "On day 8, tracking stops automatically if you have not upgraded",
+  "To continue, you actively choose to upgrade and enter your payment details",
+  "You are only ever charged after a deliberate upgrade action"
 ]
 
 const nonRefundableConditions = [
-  "More than 7 days have passed since purchase",
-  "More than 20% of plan usage has been consumed",
-  "Content or products have been published",
-  "AI-intensive features have been heavily used",
-  "API access has been used",
-  "Add-ons have been purchased and used",
+  "You have actively upgraded to a paid plan and billing has started",
+  "AI visibility tracking has been run on your paid plan",
+  "Prompts have been executed across AI engines",
+  "Schema generation features have been used",
   "The subscription has been renewed",
   "Annual plans are activated",
   "Accounts are suspended due to misuse or violation of terms"
@@ -29,31 +30,33 @@ const sections = [
   {
     title: "3. Subscription Cancellations",
     content: `• You can cancel your subscription at any time from your dashboard
-• Cancellation stops future billing
-• You will retain access until the end of your billing period
-• No partial refunds are issued for unused time`
+• Cancellation stops future billing immediately
+• You will retain access until the end of your current billing period
+• No partial refunds are issued for unused time within a billing period`
   },
   {
     title: "4. Enterprise & Custom Plans",
-    content: `Enterprise and custom plans are governed by separate agreements and handled case-by-case.`
+    content: `Enterprise and custom plans are governed by separate agreements and handled on a case-by-case basis. Please contact support@tecsaro.com before purchasing an enterprise plan if you have questions about billing terms.`
   },
   {
     title: "5. Chargebacks & Disputes",
-    content: `Initiating a chargeback without contacting support may result in account suspension.
-We encourage users to contact us first for faster resolution.`
+    content: `Initiating a chargeback without contacting support may result in immediate account suspension.
+We encourage users to reach out to us first — we resolve most issues quickly and fairly.`
   },
   {
-    title: "6. How to Request a Refund",
-    content: `To request a refund, email us at:
+    title: "6. Billing Issues",
+    content: `If you believe you were charged incorrectly, contact us at:
 support@tecsaro.com
 
-Subject: Refund Request
-Include your account email and payment date.`
+Subject: Billing Issue
+Include your account email and the date of the charge.
+
+We will review and respond within 2 business days.`
   },
   {
     title: "7. Policy Updates",
     content: `We may update this policy from time to time.
-The latest version will always be available on this page.`
+The latest version will always be available on this page with the updated date.`
   }
 ]
 
@@ -61,14 +64,14 @@ export default function RefundPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      
+
       <main>
         {/* Hero Section */}
         <section className="relative pt-32 pb-16 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-muted/50 to-transparent" />
-          
+
           <div className="container mx-auto px-4 relative z-10">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -92,15 +95,42 @@ export default function RefundPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <p className="text-muted-foreground">
-                At Tecsaro AI, we provide digital, AI-powered services that begin processing 
-                immediately after activation. This policy explains when refunds are applicable 
-                and when they are not.
+                At Tecsaro AI, we believe you should never pay for something you haven't had a
+                chance to evaluate. That's why every new user gets a full 7-day free trial —
+                with no credit card required. You are only ever charged if you actively choose
+                to upgrade. Because of this, all purchases are final and non-refundable.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Eligibility Section */}
+        {/* No Credit Card Banner */}
+        <section className="py-4">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-emerald/5 border border-emerald/20 rounded-2xl p-5 flex items-start gap-4"
+              >
+                <div className="w-9 h-9 bg-emerald/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <CreditCard className="w-5 h-5 text-emerald" />
+                </div>
+                <div>
+                  <p className="font-semibold text-foreground mb-1">No credit card required to start</p>
+                  <p className="text-sm text-muted-foreground">
+                    Your 7-day free trial starts the moment you sign up — no card, no commitment.
+                    If you don't upgrade before day 7, tracking stops automatically and you are
+                    never charged. Simple as that.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* How It Works */}
         <section className="py-8">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
@@ -108,28 +138,28 @@ export default function RefundPage() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-emerald/5 border border-emerald/20 rounded-2xl p-6 mb-8"
+                className="bg-card border border-border rounded-2xl p-6 mb-8"
               >
                 <h2 className="text-xl font-bold mb-4 text-foreground flex items-center gap-2">
-                  <Check className="w-5 h-5 text-emerald" />
-                  1. Eligibility for Refund
+                  <Info className="w-5 h-5 text-violet" />
+                  1. How Our Trial & Billing Works
                 </h2>
-                <p className="text-muted-foreground mb-4">
-                  You may request a refund within 7 days of your first purchase if all of the following conditions are met:
-                </p>
-                <ul className="space-y-2">
-                  {eligibleConditions.map((condition, index) => (
-                    <li key={index} className="flex items-start gap-2 text-muted-foreground">
-                      <Check className="w-4 h-4 text-emerald mt-1 flex-shrink-0" />
-                      {condition}
+                <ul className="space-y-3">
+                  {howItWorks.map((step, index) => (
+                    <li key={index} className="flex items-start gap-3 text-muted-foreground">
+                      <span className="w-6 h-6 rounded-full bg-emerald/10 text-emerald text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                        {index + 1}
+                      </span>
+                      {step}
                     </li>
                   ))}
                 </ul>
-                <p className="text-sm text-muted-foreground mt-4">
-                  If eligible, the refund will be processed to the original payment method within 7-10 business days.
+                <p className="text-sm text-muted-foreground mt-5 pt-4 border-t border-border">
+                  Because you are only charged after a deliberate upgrade action, there is no scenario where you are accidentally billed.
                 </p>
               </motion.div>
 
+              {/* Non-Refundable */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -138,10 +168,10 @@ export default function RefundPage() {
               >
                 <h2 className="text-xl font-bold mb-4 text-foreground flex items-center gap-2">
                   <X className="w-5 h-5 text-destructive" />
-                  2. Non-Refundable Situations
+                  2. All Purchases Are Final
                 </h2>
                 <p className="text-muted-foreground mb-4">
-                  Refunds will not be issued if:
+                  Once you have upgraded to a paid plan, refunds are not issued. This applies when:
                 </p>
                 <ul className="space-y-2">
                   {nonRefundableConditions.map((condition, index) => (
@@ -181,7 +211,7 @@ export default function RefundPage() {
         {/* Why This Policy Exists */}
         <section className="py-12 bg-card">
           <div className="container mx-auto px-4">
-            <motion.div 
+            <motion.div
               className="max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -194,8 +224,11 @@ export default function RefundPage() {
                 <div>
                   <h3 className="text-lg font-bold mb-2 text-foreground">Why this policy exists</h3>
                   <p className="text-muted-foreground">
-                    Our services use AI, APIs, and infrastructure that incur immediate costs once activated. 
-                    This policy helps us keep pricing fair for all users while ensuring sustainability.
+                    Every time we run a prompt across ChatGPT, Gemini, or Perplexity to check your
+                    brand's visibility, we are charged by the AI provider in real time. Daily tracking
+                    across multiple engines and prompts adds up immediately. Since we give you a full
+                    7 days to evaluate the platform with no card required, upgrading is always a
+                    conscious, informed decision — which is why all paid purchases are final.
                   </p>
                 </div>
               </div>
