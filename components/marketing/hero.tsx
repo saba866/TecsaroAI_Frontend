@@ -356,11 +356,63 @@ export function Hero() {
           </motion.div>
 
           {/* Main headline */}
+          {/* <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="font-heading text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-white mb-6"
+          >
+            <motion.span
+              className="text-gray-400 block"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              Most brands are invisible in AI answers.
+            </motion.span>
+            <motion.span
+              className="block mt-2"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <ScrambleText text="Tecsaro AI" className="text-white cursor-pointer" />{" "}
+              <GradientText>
+                <TypewriterText words={["tracks", "measures", "improves"]} />
+              </GradientText>
+            </motion.span>
+            <motion.span
+              className="block mt-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              your{" "}
+              <motion.span
+                className="bg-gradient-to-r from-violet to-violet-light bg-clip-text text-transparent inline-block"
+                whileHover={{ scale: 1.05 }}
+              >
+                AI answer
+              </motion.span>{" "}
+              visibility.
+            </motion.span>
+          </motion.h1> */}
+
+          {/* Main headline */}
+          {/* NOTE: The <noscript> tag below ensures Google's crawler always sees the full
+              app name + purpose even when JS hasn't run the typewriter animation yet. */}
+          <noscript>
+            <h1 className="font-heading text-4xl font-bold text-white mb-6">
+              Tecsaro AI tracks your AI answer visibility across ChatGPT, Gemini, and Perplexity.
+            </h1>
+          </noscript>
+
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="font-heading text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-white mb-6"
+            aria-label="Tecsaro AI tracks your AI answer visibility."
           >
             <motion.span
               className="text-gray-400 block"
