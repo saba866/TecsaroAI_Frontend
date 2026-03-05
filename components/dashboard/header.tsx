@@ -220,8 +220,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu"
-import { HelpPanel } from "@/components/dashboard/help-panel"
-import { NotificationsDropdown } from "@/components/dashboard/notifications-dropdown"
+
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
