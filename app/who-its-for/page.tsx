@@ -199,7 +199,7 @@ export default function WhoItsForPage() {
               asChild
             >
               <Link href="/signup">
-                Start your Test Drive
+                Start your free trail
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
