@@ -19,6 +19,8 @@ import { supabaseBrowser } from "@/lib/supabaseClient"
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
 export default function LoginPage() {
+  // ADD THIS LINE
+  console.log("BACKEND URL:", process.env.NEXT_PUBLIC_BACKEND_URL)
   const router = useRouter()
 
   const [showPassword, setShowPassword] = useState(false)
