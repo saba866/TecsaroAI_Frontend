@@ -240,14 +240,27 @@ select option:disabled {
 }
 
 /* All text inputs */
-input[type="text"],
+/* input[type="text"],
 input[type="url"],
 input[type="email"],
 input[type="password"] {
   color: white;
+} */
+
+/* input::placeholder {
+  color: rgba(255, 255, 255, 0.30);
+} */
+
+
+/* Only apply white text inside dark/onboarding sections */
+.glass-dark input[type="text"],
+.glass-dark input[type="url"],
+.glass-dark input[type="email"],
+.glass-dark input[type="password"] {
+  color: white;
 }
 
-input::placeholder {
+.glass-dark input::placeholder {
   color: rgba(255, 255, 255, 0.30);
 }
 
@@ -269,4 +282,16 @@ input::placeholder {
 /* Muted text helper class */
 .text-muted {
   color: rgba(255, 255, 255, 0.45);
+}
+
+
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-text-fill-color: #111827 !important;
+  transition: background-color 5000s ease-in-out 0s !important;
 }

@@ -253,10 +253,12 @@ export default function SignupPage() {
                   name="password" type={showPassword ? "text" : "password"}
                   placeholder="Create a strong password" required autoComplete="new-password"
                   onChange={handleChange}
-                  className="h-12 bg-white border-gray-200 text-charcoal placeholder:text-graphite/50 pr-12 focus:border-emerald focus:ring-emerald/20"
+                  // className="h-12 bg-white border-gray-200 text-charcoal placeholder:text-graphite/50  focus:border-emerald focus:ring-emerald/20"
+                  className="h-12 bg-white border-gray-200 text-gray-900 placeholder:text-gray-400 focus:border-emerald focus:ring-emerald/20 [&:-webkit-autofill]:bg-white [&:-webkit-autofill]:[box-shadow:0_0_0px_1000px_white_inset] [&:-webkit-autofill]:[-webkit-text-fill-color:#111827]"
+                   
                 />
                 <button type="button" onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-graphite hover:text-charcoal transition-colors">
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-charcoal hover:text-charcoal transition-colors">
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
