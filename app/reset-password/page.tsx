@@ -36,51 +36,66 @@ export default function ResetPasswordPage() {
   }
 
   return (
+    //Left panel
     <div className="min-h-screen bg-cloud flex">
 
-      {/* ── Left panel ── */}
       <div className="hidden lg:flex lg:w-[52%] bg-charcoal relative overflow-hidden flex-col justify-between px-14 py-12">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-emerald/8 blur-[120px]" />
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-violet/8 blur-[120px]" />
-        </div>
+  <div className="absolute inset-0 pointer-events-none">
+    <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-emerald/8 blur-[120px]" />
+    <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-violet/8 blur-[120px]" />
+  </div>
 
-        <div className="relative">
-          <Image src="/TecsaroAIfulllogo.png" alt="Tecsaro AI" width={180} height={48} priority />
-        </div>
+  {/* Logo + content grouped — no gap between them */}
+  <div className="relative flex flex-col gap-10">
+    <div className="flex items-center gap-2">
+      <Image src="/logoicon.png" alt="Tecsaro AI" width={80} height={80} priority />
+      <span
+        className="font-heading font-bold text-white"
+        style={{ fontSize: "50px", lineHeight: "50px" }}
+      >
+        Tecsaro AI
+      </span>
+    </div>
 
-        <div className="relative max-w-md">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald/10 border border-emerald/20 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald animate-pulse" />
-            <span className="text-[11px] font-mono font-bold text-emerald tracking-widest uppercase">
-              Password Reset
-            </span>
-          </div>
-          <h2 className="font-heading text-3xl font-bold text-white mb-4 leading-tight">
-            Almost there —
-            <span className="text-emerald"> set a new password</span>
-          </h2>
-          <p className="text-graphite text-sm leading-relaxed">
-            Once updated, you'll be back to tracking your brand visibility
-            across ChatGPT, Gemini and Perplexity in seconds.
-          </p>
-        </div>
-
-        <div className="relative">
-          <p className="text-xs text-graphite">
-            Need help? Contact us at support@tecsaro.com
-          </p>
-        </div>
+    <div className="max-w-md">
+      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald/10 border border-emerald/20 mb-6">
+        <span className="w-1.5 h-1.5 rounded-full bg-emerald animate-pulse" />
+        <span className="text-[11px] font-mono font-bold text-emerald tracking-widest uppercase">
+          Password Reset
+        </span>
       </div>
+      <h2 className="font-heading text-3xl font-bold text-white mb-4 leading-tight">
+        Almost there —
+        <span className="text-emerald"> set a new password</span>
+      </h2>
+      <p className="text-graphite text-sm leading-relaxed">
+        Once updated, you'll be back to tracking your brand visibility
+        across ChatGPT, Gemini and Perplexity in seconds.
+      </p>
+    </div>
+  </div>
 
+  {/* Footer pinned to bottom */}
+  <div className="relative">
+    <p className="text-xs text-graphite">
+      Need help? Contact us at support@tecsaro.com
+    </p>
+  </div>
+</div>
       {/* ── Right panel ── */}
       <div className="flex-1 flex flex-col justify-center px-6 py-12 lg:px-12 bg-white">
         <div className="mx-auto w-full max-w-sm">
 
           {/* Mobile logo */}
-          <div className="flex justify-center mb-8 lg:hidden">
-            <Image src="/TecsaroAIfulllogo.png" alt="Tecsaro AI" width={180} height={48} priority />
-          </div>
+          <div className="flex items-center gap-2 lg:hidden mb-8">
+                      <Image src="/logoicon.png" alt="Tecsaro AI" width={50} height={50} priority />
+                      <span
+                        className="font-heading font-bold text-charcoal"
+                        style={{ fontSize: "30px", lineHeight: "30px" }}
+                      >
+                        Tecsaro AI
+                      </span>
+                    </div>
 
           {!success ? (
             <>

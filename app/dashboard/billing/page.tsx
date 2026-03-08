@@ -9,6 +9,7 @@
 // import {
 //   Check, Zap, Lock, FileText, ExternalLink,
 //   Loader2, Star, AlertCircle, XCircle, CheckCircle2, RefreshCw,
+//   Calendar, CreditCard,
 // } from "lucide-react"
 // import { cn } from "@/lib/utils"
 // import { supabaseBrowser } from "@/lib/supabaseClient"
@@ -22,6 +23,7 @@
 // interface BillingData {
 //   tier: PlanTier; razorpay_subscription_id: string | null
 //   subscription_status: string; current_period_end: string | null
+//   next_billing_at: string | null
 //   is_active: boolean; is_pro: boolean; billing_interval?: string
 // }
 // interface Invoice  { id: string; date: string; amount: string; status: string }
@@ -33,37 +35,38 @@
 //   reset_date: string | null
 // }
 
+// /* ── Pricing: Starter ₹2,999/mo · ₹29,990/yr | Pro ₹7,999/mo · ₹79,990/yr */
 // const PLANS = [
 //   {
 //     tier: "starter" as PlanTier, name: "Starter",
-//     monthly: { price: "₹6,900",    period: "/month" },
-//     yearly:  { price: "₹69,000",   period: "/year", perMonth: "₹5,750/mo" },
+//     monthly: { price: "₹2,999",  period: "/month" },
+//     yearly:  { price: "₹29,990", period: "/year", perMonth: "₹2,499/mo" },
 //     description: "For founders and solo marketers tracking one brand.",
 //     features: [
 //       { label: "1 brand / project",       included: true  },
-//       { label: "20 AI prompts tracked",    included: true  },
-//       { label: "5 competitors tracked",    included: true  },
-//       { label: "Gemini + ChatGPT",         included: true  },
-//       { label: "Schema markup",            included: true  },
-//       { label: "7-day free trial",         included: true  },
-//       { label: "Perplexity tracking",      included: false },
-//       { label: "PDF report export",        included: false },
+//       { label: "20 AI prompts tracked",   included: true  },
+//       { label: "5 competitors tracked",   included: true  },
+//       { label: "Gemini + ChatGPT",        included: true  },
+//       { label: "Schema markup",           included: true  },
+//       { label: "7-day free trial",        included: true  },
+//       { label: "Perplexity tracking",     included: false },
+//       { label: "PDF report export",       included: false },
 //     ],
 //   },
 //   {
 //     tier: "pro" as PlanTier, name: "Pro", highlight: true,
-//     monthly: { price: "₹20,900",   period: "/month" },
-//     yearly:  { price: "₹2,09,000", period: "/year", perMonth: "₹17,417/mo" },
+//     monthly: { price: "₹7,999",  period: "/month" },
+//     yearly:  { price: "₹79,990", period: "/year", perMonth: "₹6,666/mo" },
 //     description: "For growth teams tracking multiple brands across all AI models.",
 //     features: [
 //       { label: "Up to 5 brands",                included: true },
-//       { label: "50 AI prompts tracked",          included: true },
-//       { label: "20 competitors tracked",         included: true },
+//       { label: "50 AI prompts tracked",         included: true },
+//       { label: "20 competitors tracked",        included: true },
 //       { label: "Gemini + ChatGPT + Perplexity", included: true },
-//       { label: "Schema markup",                  included: true },
-//       { label: "7-day free trial",               included: true },
-//       { label: "Perplexity tracking",            included: true },
-//       { label: "PDF report export",              included: true },
+//       { label: "Schema markup",                 included: true },
+//       { label: "7-day free trial",              included: true },
+//       { label: "Perplexity tracking",           included: true },
+//       { label: "PDF report export",             included: true },
 //     ],
 //   },
 // ]
@@ -73,19 +76,29 @@
 //   return new Date(iso).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
 // }
 
+// function daysUntil(iso: string | null): number | null {
+//   if (!iso) return null
+//   const diff = new Date(iso).getTime() - Date.now()
+//   return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)))
+// }
+
 // function StatusBadge({ status }: { status: string }) {
 //   const map: Record<string, { label: string; cls: string }> = {
-//     active:               { label: "Active",         cls: "bg-emerald/10 text-emerald border-emerald/20" },
-//     authenticated:        { label: "Active",         cls: "bg-emerald/10 text-emerald border-emerald/20" },
-//     trial:                { label: "Trial",          cls: "bg-amber/10 text-amber border-amber/20" },
+//     active:               { label: "Active",         cls: "bg-emerald/10 text-emerald border-emerald/20"             },
+//     authenticated:        { label: "Active",         cls: "bg-emerald/10 text-emerald border-emerald/20"             },
+//     trial:                { label: "Trial",          cls: "bg-amber/10 text-amber border-amber/20"                   },
 //     payment_failed:       { label: "Payment Failed", cls: "bg-destructive/10 text-destructive border-destructive/20" },
 //     halted:               { label: "Halted",         cls: "bg-destructive/10 text-destructive border-destructive/20" },
-//     canceled:             { label: "Cancelled",      cls: "bg-muted text-muted-foreground border-border" },
-//     pending_cancellation: { label: "Cancelling",     cls: "bg-amber/10 text-amber border-amber/20" },
-//     inactive:             { label: "Inactive",       cls: "bg-muted text-muted-foreground border-border" },
+//     canceled:             { label: "Cancelled",      cls: "bg-muted text-muted-foreground border-border"             },
+//     pending_cancellation: { label: "Cancelling",     cls: "bg-amber/10 text-amber border-amber/20"                   },
+//     inactive:             { label: "Inactive",       cls: "bg-muted text-muted-foreground border-border"             },
 //   }
 //   const s = map[status] ?? { label: status, cls: "bg-muted text-muted-foreground border-border" }
-//   return <span className={cn("inline-flex items-center px-2.5 py-1 rounded-full border text-[11px] font-bold font-mono", s.cls)}>{s.label}</span>
+//   return (
+//     <span className={cn("inline-flex items-center px-2.5 py-1 rounded-full border text-[11px] font-bold font-mono", s.cls)}>
+//       {s.label}
+//     </span>
+//   )
 // }
 
 // function UsageBar({ label, used, max }: { label: string; used: number; max: number }) {
@@ -114,7 +127,6 @@
 //   const [checkoutOpen,  setCheckoutOpen]  = useState(false)
 //   const [checkoutPlan,  setCheckoutPlan]  = useState<"starter" | "pro">("pro")
 //   const [checkoutIntvl, setCheckoutIntvl] = useState<BillingInterval>("monthly")
-//   // Local toggle for plan cards display
 //   const [planInterval,  setPlanInterval]  = useState<BillingInterval>("monthly")
 
 //   const showToast = (type: "success" | "error", msg: string) => {
@@ -177,14 +189,16 @@
 //     </div>
 //   )
 
-//   const currentTier = billing?.tier ?? "free"
-//   const isActive    = billing?.is_active ?? false
-//   const subStatus   = billing?.subscription_status ?? "inactive"
-//   const isYearly    = billing?.billing_interval === "yearly"
+//   const currentTier  = billing?.tier ?? "free"
+//   const isActive     = billing?.is_active ?? false
+//   const subStatus    = billing?.subscription_status ?? "inactive"
+//   const isYearly     = billing?.billing_interval === "yearly"
+//   const nextBillDate = billing?.next_billing_at ?? billing?.current_period_end ?? null
+//   const daysLeft     = daysUntil(nextBillDate)
 
 //   const currentPrice = () => {
-//     if (currentTier === "pro")     return isYearly ? "₹2,09,000/year" : "₹20,900/month"
-//     if (currentTier === "starter") return isYearly ? "₹69,000/year"   : "₹6,900/month"
+//     if (currentTier === "pro")     return isYearly ? "₹79,990/year" : "₹7,999/month"
+//     if (currentTier === "starter") return isYearly ? "₹29,990/year" : "₹2,999/month"
 //     return "Free"
 //   }
 
@@ -207,26 +221,50 @@
 //       </div>
 
 //       {/* Current plan banner */}
-//       <div className={cn("rounded-xl border p-5 flex items-center justify-between gap-4 flex-wrap", currentTier === "pro" ? "bg-emerald/5 border-emerald/20" : "bg-card border-border")}>
+//       <div className={cn(
+//         "rounded-xl border p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4",
+//         currentTier === "pro" ? "bg-emerald/5 border-emerald/20" : "bg-card border-border"
+//       )}>
 //         <div className="flex items-center gap-4">
-//           <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center", currentTier === "pro" ? "bg-emerald/10" : "bg-muted")}>
+//           <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center shrink-0", currentTier === "pro" ? "bg-emerald/10" : "bg-muted")}>
 //             {currentTier === "pro" ? <Star className="h-5 w-5 text-emerald" /> : <Zap className="h-5 w-5 text-muted-foreground" />}
 //           </div>
-//           <div>
-//             <div className="flex items-center gap-2 mb-0.5">
+//           <div className="min-w-0">
+//             <div className="flex items-center gap-2 mb-0.5 flex-wrap">
 //               <p className="font-heading text-base font-bold text-foreground">
 //                 {currentTier === "pro" ? "Pro Plan" : currentTier === "starter" ? "Starter Plan" : "Free Plan"}
 //                 {isYearly && <span className="ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald/20 text-emerald font-mono">ANNUAL</span>}
 //               </p>
 //               <StatusBadge status={subStatus} />
 //             </div>
-//             <p className="text-xs text-muted-foreground font-mono">
-//               {currentPrice()}
-//               {billing?.current_period_end && isActive ? ` · renews ${formatDate(billing.current_period_end)}` : ""}
-//             </p>
+//             <p className="text-xs text-muted-foreground font-mono">{currentPrice()}</p>
+//             {isActive && nextBillDate && (
+//               <div className="flex items-center gap-1.5 mt-1.5">
+//                 <Calendar className="h-3 w-3 text-muted-foreground shrink-0" />
+//                 <p className="text-xs text-muted-foreground font-mono">
+//                   Next bill on <span className="text-foreground font-semibold">{formatDate(nextBillDate)}</span>
+//                   {daysLeft !== null && (
+//                     <span className={cn(
+//                       "ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-bold border font-mono",
+//                       daysLeft <= 3 ? "bg-destructive/10 text-destructive border-destructive/20"
+//                       : daysLeft <= 7 ? "bg-amber/10 text-amber border-amber/20"
+//                       : "bg-muted text-muted-foreground border-border"
+//                     )}>{daysLeft}d left</span>
+//                   )}
+//                 </p>
+//               </div>
+//             )}
+//             {!isActive && billing?.current_period_end && (
+//               <div className="flex items-center gap-1.5 mt-1.5">
+//                 <CreditCard className="h-3 w-3 text-muted-foreground shrink-0" />
+//                 <p className="text-xs text-muted-foreground font-mono">
+//                   Access until <span className="text-foreground font-semibold">{formatDate(billing.current_period_end)}</span>
+//                 </p>
+//               </div>
+//             )}
 //           </div>
 //         </div>
-//         <div className="flex items-center gap-2">
+//         <div className="flex items-center gap-2 shrink-0">
 //           {isActive && billing?.razorpay_subscription_id && (
 //             <button onClick={handleCancel} disabled={cancelling}
 //               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-destructive/30 bg-destructive/5 text-xs font-semibold text-destructive hover:bg-destructive/10 transition-colors">
@@ -254,25 +292,22 @@
 //         </div>
 //       )}
 
-//       {/* Plans */}
+//       {/* Plan cards */}
 //       <div>
 //         <div className="flex items-center justify-between mb-4">
 //           <p className="font-heading text-sm font-semibold text-foreground">{currentTier === "pro" ? "Your Plan" : "Choose a Plan"}</p>
-//           {/* Interval toggle */}
 //           <div className="flex items-center gap-1 p-1 rounded-lg bg-muted border border-border">
 //             {(["monthly", "yearly"] as BillingInterval[]).map((i) => (
 //               <button key={i} onClick={() => setPlanInterval(i)}
-//                 className={cn(
-//                   "px-3 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1.5",
+//                 className={cn("px-3 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1.5",
 //                   planInterval === i ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
 //                 )}>
 //                 {i === "monthly" ? "Monthly" : "Yearly"}
-//                 {i === "yearly" && <span className="text-[9px] font-bold px-1 py-0.5 rounded-full bg-emerald text-white">-17%</span>}
+//                 {i === "yearly" && <span className="text-[9px] font-bold px-1 py-0.5 rounded-full bg-emerald text-white">2 months free</span>}
 //               </button>
 //             ))}
 //           </div>
 //         </div>
-
 //         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 //           {PLANS.map((plan) => {
 //             const isCurrent = plan.tier === currentTier
@@ -283,7 +318,11 @@
 //                 plan.highlight && !isCurrent ? "border-emerald/30 shadow-[0_0_0_1px_rgba(15,191,154,0.2)]" : "border-border",
 //                 isCurrent && "ring-2 ring-emerald/20"
 //               )}>
-//                 {plan.highlight && <div className="absolute top-4 right-4"><span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald text-white font-mono">RECOMMENDED</span></div>}
+//                 {plan.highlight && (
+//                   <div className="absolute top-4 right-4">
+//                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald text-white font-mono">RECOMMENDED</span>
+//                   </div>
+//                 )}
 //                 <div className={cn("h-0.5", plan.highlight ? "bg-emerald" : "bg-border")} />
 //                 <div className="p-6">
 //                   <p className="font-heading text-base font-bold text-foreground mb-1">{plan.name}</p>
@@ -291,26 +330,20 @@
 //                     <span className="font-heading text-3xl font-bold text-foreground">{pricing.price}</span>
 //                     <span className="text-sm text-muted-foreground mb-1">{pricing.period}</span>
 //                   </div>
-//                   {"perMonth" in pricing && (
-//                     <p className="text-xs text-emerald font-mono mb-1">{pricing.perMonth} · 2 months free</p>
-//                   )}
+//                   {"perMonth" in pricing && <p className="text-xs text-emerald font-mono mb-1">{pricing.perMonth} · 2 months free</p>}
 //                   <p className="text-xs text-muted-foreground mb-5">{plan.description}</p>
-
 //                   {isCurrent ? (
 //                     <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-muted border border-border text-sm font-semibold text-muted-foreground mb-5">
 //                       <Check className="h-4 w-4 text-emerald" /> Current Plan
 //                     </div>
 //                   ) : (
-//                     <button
-//                       onClick={() => openCheckout(plan.tier as "starter" | "pro", planInterval)}
+//                     <button onClick={() => openCheckout(plan.tier as "starter" | "pro", planInterval)}
 //                       className={cn("w-full py-2.5 rounded-lg text-sm font-semibold transition-colors mb-5",
 //                         plan.highlight ? "bg-emerald text-white hover:bg-emerald/90" : "bg-muted border border-border text-foreground hover:bg-foreground hover:text-background"
-//                       )}
-//                     >
+//                       )}>
 //                       Upgrade to {plan.name}
 //                     </button>
 //                   )}
-
 //                   <ul className="space-y-2.5">
 //                     {plan.features.map((f) => (
 //                       <li key={f.label} className="flex items-center gap-2.5 text-sm">
@@ -347,7 +380,7 @@
 //                 <div className="flex items-center gap-4">
 //                   <span className="text-sm font-mono font-semibold text-foreground">{inv.amount}</span>
 //                   <span className={cn("text-[11px] font-bold px-2 py-0.5 rounded-full font-mono border",
-//                     inv.status === "Paid"    ? "bg-emerald/10 text-emerald border-emerald/20" :
+//                     inv.status === "Paid" ? "bg-emerald/10 text-emerald border-emerald/20" :
 //                     inv.status === "Pending" ? "bg-amber/10 text-amber border-amber/20" :
 //                     "bg-muted text-muted-foreground border-border"
 //                   )}>{inv.status}</span>
@@ -376,13 +409,15 @@
 
 
 
+
+
 "use client"
 
 import { useState, useEffect, useCallback } from "react"
 import {
   Check, Zap, Lock, FileText, ExternalLink,
   Loader2, Star, AlertCircle, XCircle, CheckCircle2, RefreshCw,
-  Calendar, CreditCard,
+  Calendar, CreditCard, Clock,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { supabaseBrowser } from "@/lib/supabaseClient"
@@ -394,21 +429,24 @@ type PlanTier        = "starter" | "pro" | "free"
 type BillingInterval = "monthly" | "yearly"
 
 interface BillingData {
-  tier: PlanTier; razorpay_subscription_id: string | null
-  subscription_status: string; current_period_end: string | null
-  next_billing_at: string | null
-  is_active: boolean; is_pro: boolean; billing_interval?: string
+  tier:                     PlanTier
+  razorpay_subscription_id: string | null
+  subscription_status:      string
+  current_period_end:       string | null
+  next_billing_at:          string | null
+  is_active:                boolean
+  is_pro:                   boolean
+  billing_interval?:        string
 }
 interface Invoice  { id: string; date: string; amount: string; status: string }
 interface UsageData {
-  prompts_used: number; prompts_max: number
-  pages_used: number; pages_max: number
+  prompts_used: number;     prompts_max: number
+  pages_used: number;       pages_max: number
   competitors_used: number; competitors_max: number
-  projects_used: number; projects_max: number
+  projects_used: number;    projects_max: number
   reset_date: string | null
 }
 
-/* ── Pricing: Starter ₹2,999/mo · ₹29,990/yr | Pro ₹7,999/mo · ₹79,990/yr */
 const PLANS = [
   {
     tier: "starter" as PlanTier, name: "Starter",
@@ -432,9 +470,9 @@ const PLANS = [
     yearly:  { price: "₹79,990", period: "/year", perMonth: "₹6,666/mo" },
     description: "For growth teams tracking multiple brands across all AI models.",
     features: [
-      { label: "Up to 5 brands",                included: true },
+      { label: "Up to 3 brands",                included: true },
       { label: "50 AI prompts tracked",         included: true },
-      { label: "20 competitors tracked",        included: true },
+      { label: "15 competitors tracked",        included: true },
       { label: "Gemini + ChatGPT + Perplexity", included: true },
       { label: "Schema markup",                 included: true },
       { label: "7-day free trial",              included: true },
@@ -443,6 +481,9 @@ const PLANS = [
     ],
   },
 ]
+
+// Tier rank — used to detect upgrade vs downgrade
+const TIER_RANK: Record<PlanTier, number> = { free: 0, starter: 1, pro: 2 }
 
 function formatDate(iso: string | null) {
   if (!iso) return "—"
@@ -465,6 +506,7 @@ function StatusBadge({ status }: { status: string }) {
     canceled:             { label: "Cancelled",      cls: "bg-muted text-muted-foreground border-border"             },
     pending_cancellation: { label: "Cancelling",     cls: "bg-amber/10 text-amber border-amber/20"                   },
     inactive:             { label: "Inactive",       cls: "bg-muted text-muted-foreground border-border"             },
+    paused:               { label: "Paused",         cls: "bg-muted text-muted-foreground border-border"             },
   }
   const s = map[status] ?? { label: status, cls: "bg-muted text-muted-foreground border-border" }
   return (
@@ -563,13 +605,17 @@ export default function BillingPage() {
   )
 
   const currentTier  = billing?.tier ?? "free"
-  const isActive     = billing?.is_active ?? false
   const subStatus    = billing?.subscription_status ?? "inactive"
+  const isActive     = billing?.is_active ?? false
   const isYearly     = billing?.billing_interval === "yearly"
   const nextBillDate = billing?.next_billing_at ?? billing?.current_period_end ?? null
   const daysLeft     = daysUntil(nextBillDate)
 
+  const isPaidSubscriber = isActive && !!billing?.razorpay_subscription_id
+  const isOnTrial        = !isPaidSubscriber
+
   const currentPrice = () => {
+    if (!isPaidSubscriber) return "Free trial"
     if (currentTier === "pro")     return isYearly ? "₹79,990/year" : "₹7,999/month"
     if (currentTier === "starter") return isYearly ? "₹29,990/year" : "₹2,999/month"
     return "Free"
@@ -593,25 +639,52 @@ export default function BillingPage() {
         <p className="text-xs text-muted-foreground font-mono mt-0.5">Manage your subscription and usage</p>
       </div>
 
+      {/* Trial banner — only for non-paid users */}
+      {isOnTrial && (
+        <div className="rounded-xl border border-amber/20 bg-amber/5 p-4 flex items-start gap-3">
+          <Clock className="h-4 w-4 text-amber shrink-0 mt-0.5" />
+          <div>
+            <p className="text-sm font-semibold text-foreground">
+              You're on a {currentTier === "pro" ? "Pro" : "Starter"} free trial
+            </p>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {nextBillDate
+                ? `Your trial ends on ${formatDate(nextBillDate)}. Subscribe below to keep access — you won't be charged until then.`
+                : "Subscribe below to keep access after your trial ends — you won't be charged until the trial ends."
+              }
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Current plan banner */}
       <div className={cn(
         "rounded-xl border p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4",
-        currentTier === "pro" ? "bg-emerald/5 border-emerald/20" : "bg-card border-border"
+        currentTier === "pro" && isPaidSubscriber ? "bg-emerald/5 border-emerald/20" : "bg-card border-border"
       )}>
         <div className="flex items-center gap-4">
-          <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center shrink-0", currentTier === "pro" ? "bg-emerald/10" : "bg-muted")}>
-            {currentTier === "pro" ? <Star className="h-5 w-5 text-emerald" /> : <Zap className="h-5 w-5 text-muted-foreground" />}
+          <div className={cn("w-10 h-10 rounded-xl flex items-center justify-center shrink-0",
+            currentTier === "pro" && isPaidSubscriber ? "bg-emerald/10" : "bg-muted"
+          )}>
+            {currentTier === "pro" && isPaidSubscriber
+              ? <Star className="h-5 w-5 text-emerald" />
+              : <Zap  className="h-5 w-5 text-muted-foreground" />}
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 mb-0.5 flex-wrap">
               <p className="font-heading text-base font-bold text-foreground">
                 {currentTier === "pro" ? "Pro Plan" : currentTier === "starter" ? "Starter Plan" : "Free Plan"}
-                {isYearly && <span className="ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald/20 text-emerald font-mono">ANNUAL</span>}
+                {isYearly && isPaidSubscriber && (
+                  <span className="ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-emerald/20 text-emerald font-mono">ANNUAL</span>
+                )}
+                {isOnTrial && (
+                  <span className="ml-2 text-[10px] font-bold px-1.5 py-0.5 rounded-full bg-amber/20 text-amber font-mono">TRIAL</span>
+                )}
               </p>
-              <StatusBadge status={subStatus} />
+              <StatusBadge status={isOnTrial ? "trial" : subStatus} />
             </div>
             <p className="text-xs text-muted-foreground font-mono">{currentPrice()}</p>
-            {isActive && nextBillDate && (
+            {isPaidSubscriber && isActive && nextBillDate && (
               <div className="flex items-center gap-1.5 mt-1.5">
                 <Calendar className="h-3 w-3 text-muted-foreground shrink-0" />
                 <p className="text-xs text-muted-foreground font-mono">
@@ -627,18 +700,25 @@ export default function BillingPage() {
                 </p>
               </div>
             )}
-            {!isActive && billing?.current_period_end && (
+            {isOnTrial && nextBillDate && (
               <div className="flex items-center gap-1.5 mt-1.5">
                 <CreditCard className="h-3 w-3 text-muted-foreground shrink-0" />
                 <p className="text-xs text-muted-foreground font-mono">
-                  Access until <span className="text-foreground font-semibold">{formatDate(billing.current_period_end)}</span>
+                  Trial ends <span className="text-foreground font-semibold">{formatDate(nextBillDate)}</span>
+                  {daysLeft !== null && (
+                    <span className={cn(
+                      "ml-1.5 inline-flex items-center px-1.5 py-0.5 rounded-full text-[10px] font-bold border font-mono",
+                      daysLeft <= 2 ? "bg-destructive/10 text-destructive border-destructive/20"
+                      : "bg-amber/10 text-amber border-amber/20"
+                    )}>{daysLeft}d left</span>
+                  )}
                 </p>
               </div>
             )}
           </div>
         </div>
         <div className="flex items-center gap-2 shrink-0">
-          {isActive && billing?.razorpay_subscription_id && (
+          {isPaidSubscriber && billing?.razorpay_subscription_id && (
             <button onClick={handleCancel} disabled={cancelling}
               className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-destructive/30 bg-destructive/5 text-xs font-semibold text-destructive hover:bg-destructive/10 transition-colors">
               {cancelling ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <XCircle className="h-3.5 w-3.5" />}
@@ -668,7 +748,9 @@ export default function BillingPage() {
       {/* Plan cards */}
       <div>
         <div className="flex items-center justify-between mb-4">
-          <p className="font-heading text-sm font-semibold text-foreground">{currentTier === "pro" ? "Your Plan" : "Choose a Plan"}</p>
+          <p className="font-heading text-sm font-semibold text-foreground">
+            {isPaidSubscriber ? "Your Plan" : "Choose a Plan to Subscribe"}
+          </p>
           <div className="flex items-center gap-1 p-1 rounded-lg bg-muted border border-border">
             {(["monthly", "yearly"] as BillingInterval[]).map((i) => (
               <button key={i} onClick={() => setPlanInterval(i)}
@@ -681,15 +763,24 @@ export default function BillingPage() {
             ))}
           </div>
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {PLANS.map((plan) => {
-            const isCurrent = plan.tier === currentTier
-            const pricing   = plan[planInterval]
+            // Paid subscriber on this exact tier → "Current Plan"
+            const isCurrent = isPaidSubscriber && plan.tier === currentTier
+
+            // Pro user viewing Starter card — don't prompt to downgrade
+            const isDowngrade = (TIER_RANK[plan.tier] ?? 0) < (TIER_RANK[currentTier] ?? 0)
+
+            const pricing = plan[planInterval]
+
             return (
               <div key={plan.tier} className={cn(
                 "relative bg-card border rounded-2xl overflow-hidden",
                 plan.highlight && !isCurrent ? "border-emerald/30 shadow-[0_0_0_1px_rgba(15,191,154,0.2)]" : "border-border",
-                isCurrent && "ring-2 ring-emerald/20"
+                isCurrent && "ring-2 ring-emerald/20",
+                // Visually dim the downgrade card so it doesn't compete for attention
+                isDowngrade && "opacity-70"
               )}>
                 {plan.highlight && (
                   <div className="absolute top-4 right-4">
@@ -705,18 +796,33 @@ export default function BillingPage() {
                   </div>
                   {"perMonth" in pricing && <p className="text-xs text-emerald font-mono mb-1">{pricing.perMonth} · 2 months free</p>}
                   <p className="text-xs text-muted-foreground mb-5">{plan.description}</p>
+
                   {isCurrent ? (
+                    // Paid subscriber already on this plan
                     <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-muted border border-border text-sm font-semibold text-muted-foreground mb-5">
                       <Check className="h-4 w-4 text-emerald" /> Current Plan
                     </div>
+                  ) : isDowngrade ? (
+                    // Pro user looking at Starter — no upgrade prompt, quiet label only
+                    <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-muted/50 border border-border text-xs font-mono text-muted-foreground mb-5 cursor-default select-none">
+                      <Lock className="h-3.5 w-3.5 shrink-0" /> Contact us to downgrade
+                    </div>
                   ) : (
-                    <button onClick={() => openCheckout(plan.tier as "starter" | "pro", planInterval)}
+                    // Starter user → Upgrade to Pro   |   Trial user → Subscribe to keep access
+                    <button
+                      onClick={() => openCheckout(plan.tier as "starter" | "pro", planInterval)}
                       className={cn("w-full py-2.5 rounded-lg text-sm font-semibold transition-colors mb-5",
-                        plan.highlight ? "bg-emerald text-white hover:bg-emerald/90" : "bg-muted border border-border text-foreground hover:bg-foreground hover:text-background"
+                        plan.highlight
+                          ? "bg-emerald text-white hover:bg-emerald/90"
+                          : "bg-muted border border-border text-foreground hover:bg-foreground hover:text-background"
                       )}>
-                      Upgrade to {plan.name}
+                      {isOnTrial && plan.tier === currentTier
+                        ? `Subscribe to ${plan.name}`  // trial on this tier → subscribe CTA
+                        : `Upgrade to ${plan.name}`    // lower tier → upgrade CTA
+                      }
                     </button>
                   )}
+
                   <ul className="space-y-2.5">
                     {plan.features.map((f) => (
                       <li key={f.label} className="flex items-center gap-2.5 text-sm">

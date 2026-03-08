@@ -1,92 +1,13 @@
 
 
 
-
-// "use client";
-
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import type { ProjectData } from "../../components/onboarding/OnboardingWizard";
-
-// type Props = { data: ProjectData };
-
-// export default function Step6Success({ data }: Props) {
-//   const router = useRouter();
-//   const [countdown, setCountdown] = useState(5);
-
-//   useEffect(() => {
-//     const t = setInterval(() => {
-//       setCountdown((n) => {
-//         if (n <= 1) { clearInterval(t); router.push("/dashboard"); }
-//         return n - 1;
-//       });
-//     }, 1000);
-//     return () => clearInterval(t);
-//   }, [router]);
-
-//   return (
-//     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-//       <div className="glass-dark rounded-2xl border border-white/10 p-10 shadow-2xl text-center">
-
-//         {/* ── Success icon ── */}
-//         <div className="relative mx-auto mb-7 w-20 h-20">
-//           <div className="absolute inset-0 rounded-full bg-emerald/20 animate-ping" />
-//           <div className="relative w-20 h-20 rounded-full bg-emerald/10 border border-emerald/30 flex items-center justify-center">
-//             <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
-//               <path d="M8 18L14 24L28 12" stroke="#0FBF9A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-//             </svg>
-//           </div>
-//         </div>
-
-//         {/* ── Heading ── */}
-//         <h2 className="font-heading text-2xl font-semibold text-white mb-3">
-//           Your AEO monitoring is live
-//         </h2>
-//         <p className="text-white/50 text-sm leading-relaxed mb-8 max-w-sm mx-auto">
-//           We'll run visibility checks automatically across ChatGPT, Gemini, and Perplexity.
-//           First results will be ready in about 10 minutes.
-//         </p>
-
-//         {/* ── Stats ── */}
-//         <div className="grid grid-cols-3 gap-4 mb-8">
-//           {[
-//             { label: "Prompts tracked", value: data.selectedPrompts.length || 12 },
-//             { label: "Competitors",     value: (data.competitors.length || 0) + (data.aiCompetitors?.filter((c) => c.accepted).length || 0) },
-//             { label: "AI engines",      value: 2 },
-//           ].map((stat) => (
-//             <div key={stat.label} className="p-4 rounded-xl bg-white/5 border border-white/10">
-//               <div className="font-heading text-2xl font-semibold text-emerald mb-1">{stat.value}</div>
-//               <div className="text-xs text-white/40">{stat.label}</div>
-//             </div>
-//           ))}
-//         </div>
-
-//         {/* ── CTA ── */}
-//         <button
-//           onClick={() => router.push("/dashboard")}
-//           className="w-full py-3.5 rounded-xl bg-emerald hover:bg-emerald-light text-charcoal font-semibold text-sm
-//             transition-all duration-200 hover:shadow-[0_0_24px_rgba(15,191,154,0.4)] active:scale-[0.98] mb-3"
-//         >
-//           Go to Dashboard →
-//         </button>
-
-//         <p className="text-xs text-white/30">
-//           Redirecting automatically in {countdown}s
-//         </p>
-
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
 "use client";
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { supabaseBrowser } from "@/lib/supabaseClient";
 import type { ProjectData } from "../../components/onboarding/OnboardingWizard";
+import DashboardPage from "@/app/dashboard/page";
 
 const BACKEND_URL     = process.env.NEXT_PUBLIC_BACKEND_URL;
 const POLL_MS         = 5000;    // poll every 5 seconds
@@ -322,36 +243,35 @@ export default function Step6Success({ data }: Props) {
         </div>
 
         {/* ── CTA ── */}
-        {isCompleted && (
-          <button
-            onClick={() => { stopPolling(); router.push(`/dashboard/overview?project=${planId}`); }}
-            className="w-full py-3.5 rounded-xl bg-emerald hover:bg-emerald-light text-charcoal font-semibold text-sm
-              transition-all duration-200 hover:shadow-[0_0_24px_rgba(15,191,154,0.4)] active:scale-[0.98] mb-3"
-          >
-            Go to Dashboard →
-          </button>
-        )}
+       {/* ── CTA ── */}
+{isCompleted && (
+  <button
+    onClick={() => { stopPolling(); router.push("/dashboard"); }}
+    className="w-full py-3.5 rounded-xl bg-emerald hover:bg-emerald-light text-charcoal font-semibold text-sm
+      transition-all duration-200 hover:shadow-[0_0_24px_rgba(15,191,154,0.4)] active:scale-[0.98] mb-3"
+  >
+    Go to Dashboard →
+  </button>
+)}
 
-        {/* Always show a skip button so users aren't stuck */}
-        {(isRunning || isError) && (
-          <button
-            onClick={() => { stopPolling(); router.push(`/dashboard/overview?project=${planId}`); }}
-            className="w-full py-3.5 rounded-xl border border-white/10 hover:border-white/20 text-white/60 hover:text-white text-sm font-semibold
-              transition-all duration-200 mb-3"
-          >
-            {isError ? "Go to Dashboard →" : "Skip — I'll check back later →"}
-          </button>
-        )}
+{(isRunning || isError) && (
+  <button
+    onClick={() => { stopPolling(); router.push("/dashboard"); }}
+    className="w-full py-3.5 rounded-xl border border-white/10 hover:border-white/20 text-white/60 hover:text-white text-sm font-semibold
+      transition-all duration-200 mb-3"
+  >
+    {isError ? "Go to Dashboard →" : "Skip — I'll check back later →"}
+  </button>
+)}
 
-        {/* ── Footer ── */}
-        <p className="text-xs text-white/25 font-mono">
-          {isCompleted
-            ? `Redirecting in ${redirectIn}s…`
-            : isError
-            ? "Pipeline will continue running in the background"
-            : "Hang tight — we'll redirect you automatically when your data is ready"
-          }
-        </p>
+<p className="text-xs text-white/25 font-mono">
+  {isCompleted
+    ? `Redirecting in ${redirectIn}s…`
+    : isError
+    ? "Pipeline will continue running in the background"
+    : "Hang tight — we'll redirect you automatically when your data is ready"
+  }
+</p>
 
       </div>
     </div>

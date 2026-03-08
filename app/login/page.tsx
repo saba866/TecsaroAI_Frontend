@@ -101,8 +101,14 @@ export default function LoginPage() {
         </div>
 
         {/* Logo */}
-        <div className="relative">
-          <Image src="/TecsaroAIfulllogo.png" alt="Tecsaro AI" width={180} height={48} priority />
+         <div className="flex items-center gap-2">
+          <Image src="/logoicon.png" alt="Tecsaro AI" width={80} height={80} priority />
+          <span
+            className="font-heading font-bold text-white group-hover:text-emerald transition-colors"
+            style={{ fontSize: "50px", lineHeight: "50px" }}
+          >
+            Tecsaro AI
+          </span>
         </div>
 
         {/* Main copy */}
@@ -155,9 +161,15 @@ export default function LoginPage() {
         <div className="mx-auto w-full max-w-sm">
 
           {/* Mobile logo */}
-          <div className="flex justify-center mb-8 lg:hidden">
-            <Image src="/TecsaroAIfulllogo.png" alt="Tecsaro AI" width={180} height={48} priority />
-          </div>
+          <div className="flex items-center gap-2 lg:hidden mb-8">
+  <Image src="/logoicon.png" alt="Tecsaro AI" width={50} height={50} priority />
+  <span
+    className="font-heading font-bold text-charcoal"
+    style={{ fontSize: "30px", lineHeight: "30px" }}
+  >
+    Tecsaro AI
+  </span>
+</div>
 
           <div className="mb-8">
             <h1 className="font-heading text-2xl font-bold text-charcoal mb-1">
