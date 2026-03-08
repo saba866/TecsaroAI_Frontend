@@ -411,7 +411,7 @@ function SignupForm() {
       provider: "google",
       options: {
         redirectTo: `${window.location.origin}/auth/callback?plan=${plan}`,  // ← CHANGED: added ?plan=
-        // scopes: "https://www.googleapis.com/auth/webmasters.readonly ...",
+        
       },
     })
   }
