@@ -195,7 +195,7 @@
 
 
 "use client";
-
+import Image from "next/image"
 import { Suspense, useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import Step1ProjectSetup    from "../bar/Step1ProjectSetup";
@@ -263,14 +263,10 @@ function OnboardingWizardInner() {
     <div className="relative z-10 flex flex-col items-center justify-start min-h-screen pt-12 px-4 pb-16">
 
       {/* Logo */}
-      <div className="mb-10 flex items-center gap-2.5">
-        <div className="w-8 h-8 rounded-lg bg-emerald flex items-center justify-center">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M8 2L14 5.5V10.5L8 14L2 10.5V5.5L8 2Z" fill="white" />
-          </svg>
-        </div>
-        <span className="font-heading font-semibold text-lg text-white">Tecsaro AI</span>
-      </div>
+    <div className="mb-10 flex items-center gap-2">
+  <Image src="/logoicon.png" alt="Tecsaro AI" width={36} height={36} priority />
+  <span className="font-heading font-semibold text-lg text-white">Tecsaro AI</span>
+</div>
 
       {/* Step indicator */}
       {step < 6 && (

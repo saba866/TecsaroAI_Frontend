@@ -72,7 +72,7 @@ export default function Step6Success({ data }: Props) {
       setRedirectIn(n => {
         if (n <= 1) {
           stopPolling();
-          router.push(`/dashboard/overview?project=${planId}`);
+          router.push(`/dashboard?project=${planId}`);
           return 0;
         }
         return n - 1;
@@ -246,7 +246,7 @@ export default function Step6Success({ data }: Props) {
        {/* ── CTA ── */}
 {isCompleted && (
   <button
-    onClick={() => { stopPolling(); router.push("/dashboard"); }}
+    onClick={() => { stopPolling(); router.push(`/dashboard?project=${planId}`); }}
     className="w-full py-3.5 rounded-xl bg-emerald hover:bg-emerald-light text-charcoal font-semibold text-sm
       transition-all duration-200 hover:shadow-[0_0_24px_rgba(15,191,154,0.4)] active:scale-[0.98] mb-3"
   >
@@ -256,7 +256,7 @@ export default function Step6Success({ data }: Props) {
 
 {(isRunning || isError) && (
   <button
-    onClick={() => { stopPolling(); router.push("/dashboard"); }}
+    onClick={() => { stopPolling(); router.push(`/dashboard?project=${planId}`); }}
     className="w-full py-3.5 rounded-xl border border-white/10 hover:border-white/20 text-white/60 hover:text-white text-sm font-semibold
       transition-all duration-200 mb-3"
   >

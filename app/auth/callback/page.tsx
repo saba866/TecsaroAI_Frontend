@@ -181,14 +181,14 @@ export default function AuthCallback() {
         // FIX: was router.push("/dashboard") — missing ?project= so usePlanId() returned
         // null and overview page redirected back to onboarding in a loop
         if (planId) {
-          router.push(`/dashboard/overview?project=${planId}`)
+          router.push(`/dashboard?project=${planId}`)
           return
         }
 
         // Fallback: planId missing from onboarding-status, fetch from plans list directly
         const latestPlan = Array.isArray(plans) ? plans[0] : null
         if (latestPlan?.id) {
-          router.push(`/dashboard/overview?project=${latestPlan.id}`)
+          router.push(`/dashboard?project=${latestPlan.id}`)
           return
         }
 
