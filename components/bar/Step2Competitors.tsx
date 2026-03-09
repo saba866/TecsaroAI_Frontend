@@ -12,13 +12,12 @@ const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 type Props = {
   data: ProjectData;
-  onUpdate: (p: Partial<ProjectData>) => void;
-  onBack: () => void;  
+  onUpdate: (p: Partial<ProjectData>) => void; 
   onNext: () => void;
 };
 
 
-export default function Step2Competitors({ data, onUpdate, onBack,onNext }: Props) {
+export default function Step2Competitors({ data, onUpdate, onNext }: Props) {
   const [input,   setInput]   = useState("");
   const [loading, setLoading] = useState(false);
   const [apiErr,  setApiErr]  = useState<string | null>(null);
@@ -221,17 +220,7 @@ export default function Step2Competitors({ data, onUpdate, onBack,onNext }: Prop
         {/* ── CTAs ── */}
        {/* ── CTAs ── */}
 <div className="flex gap-3">
-  {/* Back button */}
-  <button
-    onClick={onBack}
-    disabled={loading}
-    className="px-5 py-3.5 rounded-xl text-white/60 text-sm hover:text-white
-      border border-white/10 hover:border-white/20 transition-all duration-200
-      disabled:opacity-30 disabled:cursor-not-allowed"
-  >
-    ← Back
-  </button>
-
+ 
   <button
     onClick={() => handleNext(false)}
     disabled={loading}
