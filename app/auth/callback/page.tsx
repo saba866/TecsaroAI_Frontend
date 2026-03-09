@@ -2,9 +2,6 @@
 
 
 
-
-
-
 // "use client"
 
 // export const dynamic = "force-dynamic"
@@ -28,30 +25,53 @@
 //       }
 
 //       const token = data.session.access_token
+//       const meta  = data.session.user?.user_metadata ?? {}
+
+//       // ── Read plan from URL (?plan=pro) or user_metadata (set during email signUp) ──
+//       const urlParams = new URLSearchParams(window.location.search)
+//       const rawPlan   = urlParams.get("plan") ?? meta.plan ?? "starter"
+//       const plan      = ["starter", "pro"].includes(rawPlan) ? rawPlan : "starter"
+
+//       const name =
+//         meta.full_name ??
+//         meta.name      ??
+//         data.session.user?.email?.split("@")[0] ??
+//         ""
+
+//       // ── Sync profile — sets tier=plan, trial_ends_at=now+7days ──
+//       try {
+//         await fetch(`${BACKEND_URL}/profile/sync`, {
+//           method:  "POST",
+//           headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+//           body:    JSON.stringify({ name, plan }),
+//         })
+//       } catch (err) {
+//         console.error("[auth/callback] profile sync failed:", err)
+//         // Don't block — continue even if sync fails
+//       }
 
 //       try {
 //         // 1. Check if user has any plans
-//         const plansRes = await fetch(`${BACKEND_URL}/plans`, {
+//         const plansRes  = await fetch(`${BACKEND_URL}/plans`, {
 //           headers: { Authorization: `Bearer ${token}` },
 //         })
 //         const plansJson = await plansRes.json()
-//         const plans = plansJson?.data ?? plansJson?.plans ?? plansJson ?? []
+//         const plans     = plansJson?.data ?? plansJson?.plans ?? plansJson ?? []
 
-//         // 2. No plans → fresh onboarding from step 1
+//         // 2. No plans → fresh onboarding
 //         if (!Array.isArray(plans) || plans.length === 0) {
 //           router.push("/onboarding")
 //           return
 //         }
 
-//         // 3. Has plans → check if onboarding was completed
-//         const statusRes = await fetch(`${BACKEND_URL}/aeo/onboarding-status`, {
+//         // 3. Has plans → check onboarding status
+//         const statusRes  = await fetch(`${BACKEND_URL}/aeo/onboarding-status`, {
 //           headers: { Authorization: `Bearer ${token}` },
 //         })
 //         const statusJson = await statusRes.json()
 //         const { onboarding_step, planId, is_complete } = statusJson?.data ?? {}
 
-//         if (!is_complete && onboarding_step !== null && onboarding_step !== undefined) {
-//           // Resume where they left off
+//         if (!is_complete && onboarding_step != null) {
 //           router.push(`/onboarding?step=${onboarding_step + 1}&planId=${planId}`)
 //           return
 //         }
@@ -82,7 +102,6 @@
 
 
 
-
 "use client"
 
 export const dynamic = "force-dynamic"
@@ -108,7 +127,7 @@ export default function AuthCallback() {
       const token = data.session.access_token
       const meta  = data.session.user?.user_metadata ?? {}
 
-      // ── Read plan from URL (?plan=pro) or user_metadata (set during email signUp) ──
+      // Read plan from URL (?plan=pro) or user_metadata (set during email signUp)
       const urlParams = new URLSearchParams(window.location.search)
       const rawPlan   = urlParams.get("plan") ?? meta.plan ?? "starter"
       const plan      = ["starter", "pro"].includes(rawPlan) ? rawPlan : "starter"
@@ -119,7 +138,7 @@ export default function AuthCallback() {
         data.session.user?.email?.split("@")[0] ??
         ""
 
-      // ── Sync profile — sets tier=plan, trial_ends_at=now+7days ──
+      // Sync profile — sets tier=plan, trial_ends_at=now+7days
       try {
         await fetch(`${BACKEND_URL}/profile/sync`, {
           method:  "POST",
@@ -152,17 +171,32 @@ export default function AuthCallback() {
         const statusJson = await statusRes.json()
         const { onboarding_step, planId, is_complete } = statusJson?.data ?? {}
 
+        // Onboarding not complete → resume at correct step
         if (!is_complete && onboarding_step != null) {
           router.push(`/onboarding?step=${onboarding_step + 1}&planId=${planId}`)
           return
         }
 
+        // 4. Onboarding complete → go to dashboard WITH planId
+        // FIX: was router.push("/dashboard") — missing ?project= so usePlanId() returned
+        // null and overview page redirected back to onboarding in a loop
+        if (planId) {
+          router.push(`/dashboard/overview?project=${planId}`)
+          return
+        }
+
+        // Fallback: planId missing from onboarding-status, fetch from plans list directly
+        const latestPlan = Array.isArray(plans) ? plans[0] : null
+        if (latestPlan?.id) {
+          router.push(`/dashboard/overview?project=${latestPlan.id}`)
+          return
+        }
+
       } catch {
-        // If any check fails, fall through to dashboard
+        // If any check fails, fall through to onboarding (safer than broken dashboard)
       }
 
-      // 4. All complete → dashboard
-      router.push("/dashboard")
+      router.push("/onboarding")
     }
 
     handleAuth()
