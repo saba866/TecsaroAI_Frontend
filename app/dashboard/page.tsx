@@ -255,8 +255,13 @@ function OverviewPage() {
     finally    { setLoading(false) }
   }, [planId])
 
-  useEffect(() => { setMounted(true) }, [])
+ useEffect(() => { setMounted(true) }, [])
   useEffect(() => { load() },          [load])
+  useEffect(() => {
+    if (mounted && !planId) {
+      router.replace("/dashboard")
+    }
+  }, [mounted, planId, router])
 
   const handleAccept = async (id: string, name: string) => {
     setAccepted(a => [...a, name])
@@ -281,12 +286,7 @@ function OverviewPage() {
   }
 
   if (!mounted) return <div className="flex items-center justify-center min-h-screen"><Loader2 className="h-6 w-6 animate-spin text-muted-foreground"/></div>
-   if (!planId) {
-  router.replace("/onboarding")
-  return <div className="flex items-center justify-center min-h-screen">
-    <Loader2 className="h-6 w-6 animate-spin text-muted-foreground"/>
-  </div>
-}
+ 
   if (loading)  return <div className="flex items-center justify-center min-h-screen"><Loader2 className="h-6 w-6 animate-spin text-muted-foreground"/></div>
 
   const score         = scoreData?.score ?? 0
