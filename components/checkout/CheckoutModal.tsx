@@ -242,13 +242,37 @@ export function CheckoutModal({
               const selected = plan === t
 
               return (
-                <button key={t} onClick={() => setPlan(t)}
-                  className={cn(
-                    "w-full text-left rounded-xl border p-4 transition-all duration-200",
-                    selected
-                      ? "border-emerald/40 bg-emerald/5 shadow-[0_0_0_1px_rgba(15,191,154,0.15)]"
-                      : "border-white/8 bg-white/[0.02] hover:border-white/15 hover:bg-white/4"
-                  )}>
+
+                // Actual code
+                // <button key={t} onClick={() => setPlan(t)}
+                //   className={cn(
+                //     "w-full text-left rounded-xl border p-4 transition-all duration-200",
+                //     selected
+                //       ? "border-emerald/40 bg-emerald/5 shadow-[0_0_0_1px_rgba(15,191,154,0.15)]"
+                //       : "border-white/8 bg-white/[0.02] hover:border-white/15 hover:bg-white/4"
+                //   )}>
+
+               
+
+                // Coomingsoon card
+
+                <button key={t} onClick={() => t === "pro" ? null : setPlan(t)}
+    disabled={t === "pro"}
+    className={cn(
+      "w-full text-left rounded-xl border p-4 transition-all duration-200 relative",
+      t === "pro"
+        ? "border-white/5 bg-white/[0.01] opacity-50 cursor-not-allowed"
+        : selected
+        ? "border-emerald/40 bg-emerald/5 shadow-[0_0_0_1px_rgba(15,191,154,0.15)]"
+        : "border-white/8 bg-white/[0.02] hover:border-white/15 hover:bg-white/4"
+    )}>
+    {t === "pro" && (
+      <div className="absolute top-3 right-3">
+        <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-white/10 text-white/50 font-mono border border-white/10">
+          COMING SOON
+        </span>
+      </div>
+    )}
                   <div className="flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center", selected ? "bg-emerald/10" : "bg-white/5")}>
