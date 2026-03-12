@@ -1,7 +1,7 @@
 
 
 "use client"
-
+import Script from "next/script"
 import { motion, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react"
 import { Header } from "@/components/marketing/header"
@@ -233,6 +233,20 @@ function FeatureCard({ category, index }: { category: typeof featureCategories[0
 export default function FeaturesPage() {
   return (
     <div className="min-h-screen bg-background">
+      <Script id="schema-features" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Tecsaro AI Features — AEO Tracking, Competitor Detection & More",
+  url: "https://ai.tecsaro.com/features",
+  description: "Daily AI visibility tracking, competitor detection, AEO score, schema generation, prompt management, and actionable recommendations.",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",     item: "https://ai.tecsaro.com" },
+      { "@type": "ListItem", position: 2, name: "Features", item: "https://ai.tecsaro.com/features" },
+    ],
+  },
+})}} />
       <Header />
 
       <main>

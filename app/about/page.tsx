@@ -3,7 +3,7 @@
 
 
 "use client"
-
+import Script from "next/script"
 import { motion } from "framer-motion"
 import { useRef } from "react"
 import { Header } from "@/components/marketing/header"
@@ -78,6 +78,26 @@ const audiences = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
+      <Script id="schema-about" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: "About Tecsaro AI — AEO Platform for Brand Visibility",
+  url: "https://ai.tecsaro.com/about",
+  description: "Tecsaro AI was built to help businesses track and improve their visibility in AI-generated answers from ChatGPT, Gemini, and Perplexity.",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",  item: "https://ai.tecsaro.com" },
+      { "@type": "ListItem", position: 2, name: "About", item: "https://ai.tecsaro.com/about" },
+    ],
+  },
+  mainEntity: {
+    "@type": "Organization",
+    name: "Tecsaro AI",
+    foundingDate: "2025",
+    mission: "To give every business clear visibility into how they appear in AI-generated answers — and the tools to improve it.",
+  },
+})}} />
       <Header />
 
       <main>

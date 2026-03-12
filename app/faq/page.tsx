@@ -2,7 +2,7 @@
 
 
 "use client"
-
+import Script from "next/script"
 import { motion } from "framer-motion"
 import { Header } from "@/components/marketing/header"
 import { Footer } from "@/components/marketing/footer"
@@ -245,6 +245,20 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export default function FAQPage() {
   return (
     <div className="min-h-screen bg-cloud">
+      <Script id="schema-pricing" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Tecsaro AI Pricing — AEO Platform Plans",
+  url: "https://ai.tecsaro.com/pricing",
+  description: "View Tecsaro AI pricing plans. Start with a 7-day free trial. Starter from ₹2,999/month. Pro from ₹7,999/month. No credit card required.",
+  breadcrumb: {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home",    item: "https://ai.tecsaro.com" },
+      { "@type": "ListItem", position: 2, name: "Pricing", item: "https://ai.tecsaro.com/pricing" },
+    ],
+  },
+})}} />
       <Header />
 
       <main className="pt-32 pb-24">

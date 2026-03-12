@@ -1,7 +1,8 @@
 
-
+import Script from "next/script"
 
 import type { Metadata, Viewport } from "next"
+import { GoogleAnalytics } from "@/components/GoogleAnalytics"
 import { Space_Grotesk, Inter, DM_Sans } from "next/font/google"
 import { Providers } from "./providers"
 import "./globals.css"
@@ -22,6 +23,7 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
+  
 
   // ── Title (Google SEO — concise, keyword-rich) ─────────────────────────
   title: {
@@ -146,6 +148,9 @@ export const viewport: Viewport = {
   initialScale: 1,
 }
 
+
+
+ 
 export default function RootLayout({
   children,
 }: {
@@ -156,7 +161,35 @@ export default function RootLayout({
       <body
         className={`${spaceGrotesk.variable} ${inter.variable} ${dmSans.variable} font-sans antialiased`}
       >
+        <GoogleAnalytics />  
         <Providers>{children}</Providers>
+
+        <Script
+  defer
+  data-domain="ai.tecsaro.com"
+  src="https://plausible.io/js/script.js"
+  strategy="afterInteractive"
+/>
+  <Script id="schema-organization" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Tecsaro AI",
+    url: "https://ai.tecsaro.com",
+    logo: "https://ai.tecsaro.com/logoicon.png",
+    description: "Tecsaro AI is an Answer Engine Optimization (AEO) platform that tracks brand visibility across ChatGPT, Gemini, and Perplexity.",
+    foundingDate: "2025",
+    sameAs: ["https://x.com/tecsaroai","https://www.linkedin.com/company/tecsaroai","https://www.instagram.com/tecsaroai","https://www.facebook.com/tecsaroai","https://www.youtube.com/@tecsaroai"],
+    contactPoint: { "@type": "ContactPoint", contactType: "customer support", email: "support@tecsaro.com", url: "https://ai.tecsaro.com/contact" },
+  })}} />
+ 
+  <Script id="schema-website" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Tecsaro AI",
+    url: "https://ai.tecsaro.com",
+    description: "AEO platform for tracking brand visibility in ChatGPT, Gemini, and Perplexity.",
+  })}} />
+
       </body>
     </html>
   )
