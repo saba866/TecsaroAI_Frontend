@@ -93,7 +93,7 @@ export const metadata: Metadata = {
       "Monitor ChatGPT, Gemini & Perplexity daily. See who AI recommends, track competitors, and improve your AEO score. Start free for 7 days",
     images: [
       {
-        url:    "/ocg-image.png",
+        url:    "/og-image.png",
         width:  1200,
         height: 630,
         alt:    "Tecsaro AI — AI Visibility Tracking Platform",
@@ -110,7 +110,7 @@ export const metadata: Metadata = {
     title:       "Tecsaro AI — Track Your Brand Visibility in AI Search",
     description:
       "Monitor ChatGPT, Gemini & Perplexity daily. See who AI recommends, track competitors, and improve your AEO score. Start free for 7 days",
-    images: ["/ocg-image.png"],
+    images: ["/og-image.png"],
   },
 
   // ── Icons ──────────────────────────────────────────────────────────────
