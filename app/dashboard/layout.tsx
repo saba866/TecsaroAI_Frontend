@@ -1,10 +1,10 @@
 
 
 
-
+"use client"
 
 import { ReactNode } from "react"
-import type { Metadata } from "next"
+
 import { DashboardSidebar } from "@/components/dashboard/sidebar"
 import { DashboardHeader } from "@/components/dashboard/header"
 import { SidebarProvider, useSidebar } from "@/components/dashboard/sidebar-context"
@@ -46,11 +46,6 @@ function DashboardInner({ children }: { children: ReactNode }) {
   )
 }
 
-export const metadata: Metadata = {
-  title: "Dashboard — Tecsaro AI",
-  alternates: { canonical: "/dashboard" },
-  robots: { index: false, follow: false },
-}
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
