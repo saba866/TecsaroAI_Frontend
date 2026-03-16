@@ -13,7 +13,7 @@ import { useRef, useEffect, useState } from "react"
 const stats = [
   { value: 3, suffix: " engines", label: "AI engines tracked daily — ChatGPT, Gemini & Perplexity", icon: "chart" },
   { value: 95, suffix: "%", label: "Of tracked prompts return brand visibility data within 24 hours", icon: "pages" },
-  { value: 7, suffix: " days", label: "Free trial — no credit card, no auto-billing if you don't upgrade", icon: "eye" },
+  { value: 7, suffix: " days", label: "free forever — no credit card, no auto-billing if you don't upgrade", icon: "eye" },
   { value: 98, suffix: "%", label: "Customer satisfaction rate", icon: "star" },
 ]
 

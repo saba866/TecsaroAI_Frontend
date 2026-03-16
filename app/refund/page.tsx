@@ -9,7 +9,7 @@ import { Footer } from "@/components/marketing/footer"
 import { RotateCcw, Check, X, AlertCircle, Info, CreditCard } from "lucide-react"
 
 const howItWorks = [
-  "Sign up and start your 7-day free trial — no credit card required",
+  "Sign up and start your free forever — no credit card required",
   "Get full access to AI visibility tracking, prompts, competitor detection, and schema generation",
   "On day 8, tracking stops automatically if you have not upgraded",
   "To continue, you actively choose to upgrade and enter your payment details",
@@ -96,7 +96,7 @@ export default function RefundPage() {
             <div className="max-w-3xl mx-auto">
               <p className="text-muted-foreground">
                 At Tecsaro AI, we believe you should never pay for something you haven't had a
-                chance to evaluate. That's why every new user gets a full 7-day free trial —
+                chance to evaluate. That's why every new user gets a full free forever —
                 with no credit card required. You are only ever charged if you actively choose
                 to upgrade. Because of this, all purchases are final and non-refundable.
               </p>
@@ -120,7 +120,7 @@ export default function RefundPage() {
                 <div>
                   <p className="font-semibold text-foreground mb-1">No credit card required to start</p>
                   <p className="text-sm text-muted-foreground">
-                    Your 7-day free trial starts the moment you sign up — no card, no commitment.
+                    Your free forever starts the moment you sign up — no card, no commitment.
                     If you don't upgrade before day 7, tracking stops automatically and you are
                     never charged. Simple as that.
                   </p>

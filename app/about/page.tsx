@@ -330,7 +330,7 @@ export default function AboutPage() {
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">
-                  Start your free trial today
+                  Get started today
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>

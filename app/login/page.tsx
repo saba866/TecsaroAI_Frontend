@@ -273,7 +273,7 @@
 //           <p className="mt-6 text-center text-sm text-graphite">
 //             Don&apos;t have an account?{" "}
 //             <Link href="/signup" className="text-emerald hover:underline font-semibold">
-//               Start 7-day free trial
+//               Start free forever
 //             </Link>
 //           </p>
 
@@ -545,7 +545,7 @@ export default function LoginPage() {
           <p className="mt-6 text-center text-sm text-graphite">
             Don&apos;t have an account?{" "}
             <Link href="/signup" className="text-emerald hover:underline font-semibold">
-              Start 7-day free trial
+              Start free forever
             </Link>
           </p>
 

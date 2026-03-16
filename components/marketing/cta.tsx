@@ -370,7 +370,7 @@
 //                     No credit card required
 //                   </motion.span>
 //                   <span className="mx-2">·</span>
-//                   <span>14-day free trial</span>
+//                   <span>14-day free forever</span>
 //                   <span className="mx-2">·</span>
 //                   <span>Cancel anytime</span>
 //                 </motion.p>
@@ -616,7 +616,7 @@ export function CTA() {
                     animate={{ scale: [1, 1.5, 1], opacity: [1, 0.5, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
-                  <span className="text-sm font-medium text-emerald">7-day free trial · No credit card required</span>
+                  <span className="text-sm font-medium text-emerald">free forever · No credit card required</span>
                 </motion.div>
 
                 {/* Headline */}
@@ -707,7 +707,7 @@ export function CTA() {
                             transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
                           />
                           <span className="relative z-10 flex items-center">
-                            Start Free Trial
+                            free forever
                             <motion.span
                               className="inline-block ml-2"
                               animate={{ x: [0, 5, 0] }}
@@ -757,7 +757,7 @@ export function CTA() {
                     No credit card required
                   </motion.span>
                   <span className="mx-2">·</span>
-                  <span>7-day free trial</span>
+                  <span>free forever</span>
                   <span className="mx-2">·</span>
                   <span>Cancel anytime</span>
                 </motion.p>

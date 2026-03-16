@@ -485,7 +485,7 @@ export function Hero() {
                     transition={{ duration: 0.5 }}
                   />
                   <span className="relative z-10 flex items-center">
-                    Start Free Trial
+                    free forever
                     <motion.span
                       className="inline-block ml-2"
                       animate={{ x: [0, 5, 0] }}

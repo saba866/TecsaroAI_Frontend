@@ -142,9 +142,18 @@ const faqData = [
     category: "Reports & Data",
     items: [
       {
-        q: "Can I download reports?",
-        a: "Export options are available depending on your plan. Check your plan details for specifics."
-      },
+  q: "Can I share my AEO report?",
+  a: "Yes. Every plan includes a shareable report link — a public URL you can send to clients or stakeholders. No login required to view it. You can revoke the link at any time from your dashboard."
+},
+{
+  q: "What is Technical Audit?",
+  a: "Technical Audit scans your crawled pages for issues that affect AI visibility — missing titles, missing H1s, missing schema markup, thin content, missing canonical tags, and missing image alt text. Free plan shows a 3-page preview. Starter and Pro get all pages."
+},
+{
+  q: "What is AI Citation tracking?",
+  a: "AI Citation tracking (Pro only) shows which sources Perplexity cites when answering questions in your category — and whether your brand is one of them. It also surfaces gaps where competitors appear as sources but you don't."
+},
+
       {
         q: "Is my data used to train AI models?",
         a: "No. Your private website data is never used to train public AI models."
@@ -158,17 +167,18 @@ const faqData = [
   {
     category: "Pricing & Billing",
     items: [
+     
       {
-        q: "Is there a free plan?",
-        a: "No, but we offer a 7-day free trial so you can explore the platform before committing to a paid plan."
-      },
+  q: "Is there a free plan?",
+  a: "Yes. Tecsaro AI has a free plan that runs forever — no credit card required, no expiry. You get 1 brand, 10 prompts tracked, Gemini visibility, AEO Score, and basic recommendations. Upgrade to Starter or Pro when you need more."
+},
       {
         q: "Can I change my plan?",
         a: "Yes. You can upgrade at any time or downgrade at the end of your current billing cycle."
       },
       {
         q: "Do you offer refunds?",
-        a: "No. All purchases are final. Since our trial is completely free with no credit card required, you only pay when you actively choose to upgrade. We encourage you to fully explore the platform during your 7-day free trial before upgrading."
+        a: "No. All purchases are final. Since our trial is completely free with no credit card required, you only pay when you actively choose to upgrade. We encourage you to fully explore the platform during your free forever before upgrading."
       },
       {
         q: "What payment methods do you support?",
@@ -245,17 +255,17 @@ function FAQItem({ q, a }: { q: string; a: string }) {
 export default function FAQPage() {
   return (
     <div className="min-h-screen bg-cloud">
-      <Script id="schema-pricing" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+ <Script id="schema-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "Tecsaro AI Pricing — AEO Platform Plans",
-  url: "https://ai.tecsaro.com/pricing",
-  description: "View Tecsaro AI pricing plans. Start with a 7-day free trial. Starter from ₹2,999/month. Pro from ₹7,999/month. No credit card required.",
+  "@type": "FAQPage",
+  name: "Tecsaro AI FAQ — Frequently Asked Questions",
+  url: "https://ai.tecsaro.com/faq",
+  description: "Answers to common questions about Tecsaro AI, AEO tracking, pricing, and how the platform works.",
   breadcrumb: {
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home",    item: "https://ai.tecsaro.com" },
-      { "@type": "ListItem", position: 2, name: "Pricing", item: "https://ai.tecsaro.com/pricing" },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://ai.tecsaro.com" },
+      { "@type": "ListItem", position: 2, name: "FAQ",  item: "https://ai.tecsaro.com/faq" },
     ],
   },
 })}} />

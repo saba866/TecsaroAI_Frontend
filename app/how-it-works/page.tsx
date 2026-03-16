@@ -216,7 +216,7 @@ export default function HowItWorksPage() {
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">
-                  Start Your Free Trial
+                  Get started
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
@@ -281,7 +281,7 @@ export default function HowItWorksPage() {
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">
-                  Start Your Free Trial
+                  Get started
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>

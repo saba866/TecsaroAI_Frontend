@@ -166,7 +166,7 @@ export function Header() {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button className="bg-emerald hover:bg-emerald-dark text-charcoal font-semibold relative overflow-hidden group">
                   <motion.span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                  <span className="relative">Start Free Trial</span>
+                  <span className="relative">free forever</span>
                 </Button>
               </motion.div>
             </Link>
@@ -235,7 +235,7 @@ export function Header() {
                   </Link>
                   <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
                     <Button className="w-full bg-emerald hover:bg-emerald-dark text-charcoal font-semibold">
-                      Start Free Trial
+                      Get Started Free
                     </Button>
                   </Link>
                 </motion.div>

@@ -17,7 +17,8 @@ import {
   Code2,
   ArrowRight,
   Check,
-  Sparkles
+  Sparkles,
+  Shield
 } from "lucide-react"
 
 const fadeInUp = {
@@ -111,7 +112,29 @@ const productFeatures = [
       "Article schema",
       "Product schema (where applicable)"
     ]
-  }
+  },
+  {
+    icon: Shield,
+    title: "Technical Audit",
+    description: "Tecsaro AI scans your crawled pages for technical issues that hurt AI visibility — missing titles, H1s, schema markup, thin content, and more — and gives each page a health score.",
+    points: [
+      "Missing schema detection",
+      "Thin content warnings",
+      "Per-page health score",
+      "Missing canonical & alt text",
+    ]
+  },
+  {
+    icon: BarChart3,
+    title: "Shareable Reports & Score History",
+    description: "Track your AEO Score over time with a history chart, and share your full report with anyone using a public link — no login required.",
+    points: [
+      "AEO Score history chart",
+      "Shareable public report link",
+      "View counter on reports",
+      "Revoke link anytime",
+    ]
+  },
 ]
 
 export default function ProductPage() {
@@ -148,7 +171,7 @@ export default function ProductPage() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                   <Link href="/signup">
-                    Start Test Drive
+                    Get Started Free
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>
@@ -262,7 +285,7 @@ export default function ProductPage() {
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">
-                  Start Your Test Drive
+                  Get Started Free
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>

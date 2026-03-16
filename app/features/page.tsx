@@ -160,7 +160,53 @@ const additionalCategories = [
       "Historical data retention",
       "Export reports (plan-dependent)"
     ]
-  }
+  },
+  {
+    id: "technical",
+    icon: Shield,
+    title: "Technical Audit",
+    color: "violet",
+    features: [
+      "Missing title & meta description detection",
+      "Missing H1 tag detection",
+      "Missing schema markup detection",
+      "Thin content warnings (word count)",
+      "Missing canonical tag detection",
+      "Missing image alt text detection",
+      "Per-page health score",
+      "Free plan: 3 pages preview",
+    ]
+  },
+  {
+    id: "citations",
+    icon: Activity,
+    title: "AI Citation Tracking",
+    color: "emerald",
+    features: [
+      "Real citation data from Perplexity (native API)",
+      "Citation rate tracking over time",
+      "Per-engine citation breakdown",
+      "Top cited sources in your category",
+      "Missing source gap detection",
+      "Brand-is-source detection",
+      "Pro plan only",
+    ]
+  },
+  {
+    id: "reports",
+    icon: BarChart3,
+    title: "Reports & Sharing",
+    color: "violet",
+    features: [
+      "AEO Score history chart",
+      "Shareable public report link",
+      "No login required to view shared reports",
+      "View counter on shared reports",
+      "Revoke link anytime",
+      "Score trend over time",
+      "Email reports",
+    ]
+  },
 ]
 
 function FeatureCard({ category, index }: { category: typeof featureCategories[0], index: number }) {
@@ -277,7 +323,7 @@ export default function FeaturesPage() {
               </p>
               <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                 <Link href="/signup">
-                  Start Free Trial
+                  free forever
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>
@@ -351,12 +397,12 @@ export default function FeaturesPage() {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">Start tracking your AI visibility today</h2>
               <p className="text-xl text-muted-foreground mb-8">
-                7-day free trial on Starter and Pro. No credit card required.
+                free forever on Starter and Pro. No credit card required.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
                   <Link href="/signup">
-                    Start Your Free Trial
+                    Get started
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>

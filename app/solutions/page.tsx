@@ -246,7 +246,7 @@ export default function SolutionsPage() {
         {/* CTA */}
         <section className="py-20 text-center">
           <h2 className="text-3xl font-bold text-foreground mb-6">
-            Start your Test Drive
+            Get Started Free
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
             See exactly where your brand stands in AI-powered answers — today.
@@ -254,7 +254,7 @@ export default function SolutionsPage() {
 
           <Button size="lg" className="bg-emerald hover:bg-emerald-dark text-white" asChild>
             <Link href="/signup">
-              Start Your Test Drive
+             Get Started Free
               <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>
