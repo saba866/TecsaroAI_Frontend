@@ -83,8 +83,9 @@ function buildPlanInfo(row: any): PlanInfo | null {
     row.plan_name  ??
     row.plan_label ??
     row.label      ??
-    (tier === "pro" ? "Pro Plan" : tier === "enterprise" ? "Enterprise Plan" : "Starter Plan")
-
+    (tier === "pro"        ? "Pro Plan"        :
+   
+   tier === "free"       ? "Free Plan"       : "Starter Plan")
   // Price — prefer formatted string from backend
   let price: string =
     row.plan_price  ??
@@ -355,12 +356,12 @@ export function DashboardSidebar() {
                 <p className="text-[10px] text-white/40 font-mono">{planInfo.price}</p>
               )}
             </div>
-            {userProfile?.tier !== "pro" && userProfile?.tier !== "enterprise" && (
-              <Link href="/dashboard/billing"
-                className="text-[10px] font-semibold text-emerald hover:text-emerald/80 transition-colors">
-                Upgrade
-              </Link>
-            )}
+         {(userProfile?.tier === "free" || userProfile?.tier === "starter") && (
+  <Link href="/dashboard/billing"
+    className="text-[10px] font-semibold text-emerald hover:text-emerald/80 transition-colors">
+    Upgrade
+  </Link>
+)}
           </div>
         )}
 

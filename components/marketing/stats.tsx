@@ -11,13 +11,33 @@ import { useRef, useEffect, useState } from "react"
 /* -------------------- DATA -------------------- */
 
 const stats = [
-  { value: 3, suffix: " engines", label: "AI engines tracked daily — ChatGPT, Gemini & Perplexity", icon: "chart" },
-  { value: 95, suffix: "%", label: "Of tracked prompts return brand visibility data within 24 hours", icon: "pages" },
-  { value: 7, suffix: " days", label: "free forever — no credit card, no auto-billing if you don't upgrade", icon: "eye" },
-  { value: 98, suffix: "%", label: "Customer satisfaction rate", icon: "star" },
+  {
+    value: 3,
+    suffix: " engines",
+    label: "AI engines tracked daily — ChatGPT, Gemini & Perplexity",
+    icon: "chart",
+  },
+  {
+    value: 5,
+    suffix: " min",
+    label: "Average setup time — connect your site and get your first AEO score",
+    icon: "pages",
+  },
+  {
+    value: 100,
+    suffix: "%",
+    label: "Free forever — no credit card, no auto-billing if you don't upgrade",
+    icon: "eye",
+  },
+  {
+    value: 24,
+    suffix: "h",
+    label: "Visibility data refreshed every 24 hours across all tracked prompts",
+    icon: "star",
+  },
 ]
 
-const logos = ["TechCorp", "MediaFlow", "DataSync", "CloudBase", "AIForward", "NexGen", "Quantum", "Elevate"]
+
 
 /* -------------------- COUNTER -------------------- */
 
@@ -242,7 +262,7 @@ function AnimatedLogo({ name }: { name: string }) {
 export function Stats() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const reversedLogos = [...logos].reverse()
+  
 
   return (
     <section className="py-24 bg-charcoal relative overflow-hidden">
