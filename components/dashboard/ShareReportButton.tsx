@@ -18,7 +18,7 @@ export function ShareReportButton({ planId }: { planId: string }) {
     try {
       const { data: s } = await supabaseBrowser.auth.getSession()
       const token = s?.session?.access_token
-      const res = await fetch(`${BACKEND_URL}/reports/share`, {
+      const res = await fetch(`${BACKEND_URL}/aeo/reports/share`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
         body: JSON.stringify({ planId }),
