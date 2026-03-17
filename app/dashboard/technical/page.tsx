@@ -9,6 +9,7 @@ import {
   ExternalLink, Shield, FileText, Zap,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { Suspense } from "react"
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
@@ -188,7 +189,7 @@ function PageRow({ page }: { page: AuditPage }) {
 // ─────────────────────────────────────────
 // MAIN PAGE
 // ─────────────────────────────────────────
-export default function TechnicalAuditPage() {
+ function TechnicalAuditPage() {
   const planId = usePlanId()
 
   const [data,    setData]    = useState<AuditData | null>(null)
@@ -394,4 +395,12 @@ export default function TechnicalAuditPage() {
 
     </div>
   )
-}
+ }
+  
+  export default function TechnicalPage() {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <TechnicalAuditPage />
+      </Suspense>
+    )
+  }
