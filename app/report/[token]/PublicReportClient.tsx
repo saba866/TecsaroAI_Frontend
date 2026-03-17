@@ -70,7 +70,8 @@ function scoreBg(score: number) {
   return "bg-red-500/10 border-red-500/20"
 }
 
-function toArray(val: string[] | string | null | undefined): string[] {
+// Replace the existing toArray function with this
+function toArray(val: any[] | string | null | undefined): any[] {
   if (!val) return []
   if (Array.isArray(val)) return val
   return [val]
@@ -105,9 +106,11 @@ export function PublicReportClient({ token }: { token: string }) {
 
   useEffect(() => {
     if (!token) return
-    fetch(`${BACKEND_URL}/report/public/${token}`)
+    fetch(`${BACKEND_URL}/aeo/report/public/${token}`)
       .then(async (res) => {
-        const json = await res.json()
+  const json = await res.json()
+  console.log("improvements:", json?.data?.explanation?.improvements)
+  console.log("recommendations:", json?.data?.explanation?.recommendations)
         if (!res.ok) throw new Error(json?.message ?? "Report not found")
         setData(json?.data ?? null)
       })
@@ -311,22 +314,37 @@ export function PublicReportClient({ token }: { token: string }) {
           </div>
         )}
 
-        {/* ── Improvements ── */}
-        {improvements.length > 0 && (
-          <div className="bg-white border border-border rounded-2xl p-5">
-            <p className="text-sm font-heading font-semibold text-foreground mb-3 flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-blue-500" /> Areas to Improve
-            </p>
-            <ul className="space-y-2">
-              {improvements.map((item, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0 mt-1.5" />
-                  <span className="text-xs text-foreground leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+       {/* ── Improvements ── */}
+{improvements.length > 0 && (
+  <div className="bg-white border border-border rounded-2xl p-5">
+    <p className="text-sm font-heading font-semibold text-foreground mb-3 flex items-center gap-2">
+      <TrendingUp className="h-4 w-4 text-blue-500" /> Areas to Improve
+    </p>
+    <ul className="space-y-3">
+      {improvements.map((item, i) => {
+        // Handle both string and object shapes
+        const isObj = typeof item === "object" && item !== null
+        const action   = isObj ? (item as any).action   : item
+        const impact   = isObj ? (item as any).impact   : null
+        const timeline = isObj ? (item as any).timeline : null
+        return (
+          <li key={i} className="flex items-start gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0 mt-1.5" />
+            <div>
+              <span className="text-xs text-foreground leading-relaxed">{action}</span>
+              {impact && (
+                <p className="text-[11px] text-emerald font-mono mt-0.5">{impact}</p>
+              )}
+              {timeline && (
+                <p className="text-[11px] text-muted-foreground font-mono">{timeline}</p>
+              )}
+            </div>
+          </li>
+        )
+      })}
+    </ul>
+  </div>
+)}
 
         {/* ── CTA footer ── */}
         <div className="bg-charcoal rounded-2xl p-6 text-center">

@@ -1,20 +1,22 @@
 // app/report/[token]/page.tsx
-// Public page — no auth required
-// Shows full AEO report for the token
 
 import type { Metadata } from "next"
 import { PublicReportClient } from "./PublicReportClient"
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
-
-export async function generateMetadata({ params }: { params: { token: string } }): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   return {
-    title:  "AEO Visibility Report — Tecsaro AI",
+    title:       "AEO Visibility Report — Tecsaro AI",
     description: "Brand visibility in ChatGPT, Gemini & Perplexity — powered by Tecsaro AI",
-    robots: { index: false, follow: false },
+    robots:      { index: false, follow: false },
   }
 }
 
-export default function PublicReportPage({ params }: { params: { token: string } }) {
-  return <PublicReportClient token={params.token} />
+// Next.js 15 — params is a Promise, must be awaited
+export default async function PublicReportPage({
+  params,
+}: {
+  params: Promise<{ token: string }>
+}) {
+  const { token } = await params
+  return <PublicReportClient token={token} />
 }
