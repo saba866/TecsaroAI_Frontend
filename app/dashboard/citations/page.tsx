@@ -10,6 +10,7 @@ import {
 import { cn } from "@/lib/utils"
 import { supabaseBrowser } from "@/lib/supabaseClient"
 import { usePlanId } from "@/hooks/usePlanId"
+import { Suspense } from "react"
 
 const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
@@ -218,7 +219,7 @@ function ProGate() {
 // ─────────────────────────────────────────
 // MAIN PAGE
 // ─────────────────────────────────────────
-export default function CitationsPage() {
+ function CitationsContent() {
   const planId = usePlanId()
 
   const [data,     setData]     = useState<CitationData | null>(null)
@@ -458,5 +459,13 @@ export default function CitationsPage() {
       )}
 
     </div>
+  )
+}
+
+export default function CitationsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <CitationsContent />
+    </Suspense>
   )
 }
